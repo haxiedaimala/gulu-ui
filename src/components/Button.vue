@@ -1,25 +1,18 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false
-};
-</script>
 <script setup lang="ts">
-import {useAttrs} from 'vue';
-
-const {size, ...rest} = useAttrs();
+defineProps({
+  theme: {
+    type: String,
+    default: 'button'
+  }
+});
 </script>
 
 
 <template>
-  <div>
-    <button v-bind="rest">
-      <slot/>
-    </button>
-  </div>
+  <button class="gulu-button" :class="{[`theme-${theme}`]:theme}">
+    <slot/>
+  </button>
 </template>
 
 <style lang="scss" scoped>
-div {
-  border: 1px solid red;
-}
 </style>
