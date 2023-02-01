@@ -1,25 +1,34 @@
 <script setup lang="ts">
 import Button from './Button.vue';
+
+defineProps({
+  visible: {
+    type: Boolean,
+    default: false
+  }
+});
 </script>
 
 <template>
-  <div class="gulu-dialog-overlay"></div>
-  <div class="gulu-dialog-wrapper">
-    <div class="gulu-dialog">
-      <header>
-        标题
-        <span class="gulu-dialog-close"></span>
-      </header>
-      <main>
-        <p>内容1</p>
-        <p>内容2</p>
-      </main>
-      <footer>
-        <Button level="main">Ok</Button>
-        <Button>Cancle</Button>
-      </footer>
+  <template v-if="visible">
+    <div class="gulu-dialog-overlay"></div>
+    <div class="gulu-dialog-wrapper">
+      <div class="gulu-dialog">
+        <header>
+          标题
+          <span class="gulu-dialog-close"></span>
+        </header>
+        <main>
+          <p>内容1</p>
+          <p>内容2</p>
+        </main>
+        <footer>
+          <Button level="main">Ok</Button>
+          <Button>Cancle</Button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <style lang="scss">
@@ -49,7 +58,8 @@ $border-color: #d9d9d9;
     transform: translate(-50%, -50%);
     z-index: 11;
   }
-  >header{
+
+  > header {
     padding: 12px 16px;
     border-bottom: 1px solid $border-color;
     display: flex;
@@ -57,21 +67,25 @@ $border-color: #d9d9d9;
     align-items: center;
     font-size: 20px;
   }
-  >main{
+
+  > main {
     padding: 12px 16px;
   }
-  >footer{
+
+  > footer {
     border-top: 1px solid $border-color;
     padding: 12px 16px;
     text-align: right;
   }
-  &-close{
+
+  &-close {
     position: relative;
     width: 16px;
     height: 16px;
     cursor: pointer;
+
     &::after,
-    &::before{
+    &::before {
       content: "";
       height: 1px;
       width: 100%;
@@ -80,11 +94,13 @@ $border-color: #d9d9d9;
       left: 50%;
       background: black;
     }
-    &::before{
-transform: translate(-50%,-50%) rotate(45deg);
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
     }
-    &::after{
-      transform: translate(-50%,-50%) rotate(-45deg);
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
     }
   }
 }
