@@ -3,10 +3,10 @@ const props = defineProps<{
   value: boolean
 }>();
 const emit = defineEmits<{
-  (e: 'input', value: boolean): void
+  (e: 'update:value', value: boolean): void
 }>();
 const toggleChecked = () => {
-  emit('input', !props.value);
+  emit('update:value', !props.value);
 };
 </script>
 

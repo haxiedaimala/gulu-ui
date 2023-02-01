@@ -2,11 +2,11 @@
 import Switch from '../components/Switch.vue';
 import {ref} from 'vue';
 
-const y = ref(true);
+const y = ref(false);
 </script>
 
 <template>
-  <Switch :value="y" @input="y=$event"/>
+  <Switch v-model:value="y"/>
 </template>
 
 <style lang="scss" scoped>
