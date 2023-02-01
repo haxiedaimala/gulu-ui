@@ -25,5 +25,9 @@ button {
     background: #fff;
     border-radius: $h2/2;
   }
+
+  &:hover > span {
+    left: calc(100% - #{$h2} - 2px);
+  }
 }
 </style>
