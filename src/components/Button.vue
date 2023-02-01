@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-const {theme, size, level, disabled} = defineProps({
+const {theme, size, level, disabled,loading} = defineProps({
   theme: {
     type: String,
     default: 'button'
