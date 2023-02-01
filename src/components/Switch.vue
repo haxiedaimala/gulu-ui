@@ -11,15 +11,15 @@ const toggleChecked = () => {
 </script>
 
 <template>
-  <button :class="{checked:value}" @click="toggleChecked">
+  <button class="gulu-switch" :class="{'gulu-checked':value}" @click="toggleChecked">
     <span></span>
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 22px;
 $h2: ($h)-4px;
-button {
+.gulu-switch {
   width: $h*2;
   height: $h;
   border: none;
@@ -38,7 +38,7 @@ button {
     transition: all 250ms;
   }
 
-  &.checked {
+  &.gulu-checked {
     background: #1890ff;
 
     > span {
@@ -56,7 +56,7 @@ button {
     }
   }
 
-  &.checked:active {
+  &.gulu-checked:active {
     > span {
       width: $h2+4px;
       margin-left: -4px;
