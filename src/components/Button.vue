@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-const props = defineProps({
+const {theme, size, level} = defineProps({
   theme: {
     type: String,
     default: 'button'
@@ -9,11 +9,18 @@ const props = defineProps({
   size: {
     type: String,
     default: 'normal'
+  },
+  level: {
+    type: String,
+    default: 'normal'
   }
 });
-const {theme, size} = props;
 const classes = computed(() => {
-  return {[`gulu-theme-${theme}`]: theme, [`gulu-size-${size}`]: size};
+  return {
+    [`gulu-theme-${theme}`]: theme,
+    [`gulu-size-${size}`]: size,
+    [`gulu-level-${level}`]: level
+  };
 });
 </script>
 
@@ -30,6 +37,7 @@ $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
+$red: red;
 .gulu-button {
   box-sizing: border-box;
   height: $h;
@@ -44,6 +52,7 @@ $radius: 4px;
   border: 1px solid $border-color;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
+  transition: all 250ms;
 
   & + & {
     margin-left: 8px;
@@ -95,6 +104,61 @@ $radius: 4px;
     font-size: 12px;
     height: 20px;
     padding: 0 4px;
+  }
+
+  &.gulu-theme-button{
+    &.gulu-level-main {
+      background: $blue;
+      color: #fff;
+      border-color: $blue;
+
+      &:hover,
+      &:focus {
+        background: darken($blue, 10%);
+        border-color: darken($blue, 10%);
+      }
+    }
+
+    &.gulu-level-danger {
+      background: $red;
+      border-color: $red;
+      color: #fff;
+
+      &:hover,
+      &:focus {
+        background: darken($red, 10%);
+        border-color: darken($red, 10%);
+      }
+    }
+  }
+
+  &.gulu-theme-link{
+    &.gulu-level-danger {
+      color: $red;
+
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
+  }
+  &.gulu-theme-text{
+    &.gulu-level-main{
+      color: $blue;
+
+      &:hover,
+      &:focus {
+        color: darken($blue, 10%);
+      }
+    }
+    &.gulu-level-danger {
+      color: $red;
+
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
   }
 }
 </style>
