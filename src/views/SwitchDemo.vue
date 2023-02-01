@@ -2,11 +2,11 @@
 import Switch from '../components/Switch.vue';
 import {ref} from 'vue';
 
-const y = ref(false);
+const checked = ref(false);
 </script>
 
 <template>
-  <Switch v-model:value="y"/>
+  <Switch v-model:value="checked"/>
 </template>
 
 <style lang="scss" scoped>
