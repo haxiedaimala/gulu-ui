@@ -46,6 +46,12 @@ import Button from '../components/Button.vue';
       <Button theme="text" level="danger">危险文字按钮</Button>
     </div>
   </div>
+  <h2>示例4</h2>
+  <div>
+    <Button disabled>普通按钮</Button>
+    <Button theme="link" disabled>链接按钮</Button>
+    <Button theme="text" disabled>文字按钮</Button>
+  </div>
 </template>
 
 <style lang="scss" scoped>

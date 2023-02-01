@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-const {theme, size, level} = defineProps({
+const {theme, size, level, disabled} = defineProps({
   theme: {
     type: String,
     default: 'button'
@@ -13,6 +13,10 @@ const {theme, size, level} = defineProps({
   level: {
     type: String,
     default: 'normal'
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 });
 const classes = computed(() => {
@@ -26,7 +30,7 @@ const classes = computed(() => {
 
 
 <template>
-  <button class="gulu-button" :class="classes">
+  <button class="gulu-button" :class="classes" :disabled="disabled">
     <slot/>
   </button>
 </template>
@@ -38,6 +42,7 @@ $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
 $red: red;
+$grey: grey;
 .gulu-button {
   box-sizing: border-box;
   height: $h;
@@ -106,7 +111,7 @@ $red: red;
     padding: 0 4px;
   }
 
-  &.gulu-theme-button{
+  &.gulu-theme-button {
     &.gulu-level-main {
       background: $blue;
       color: #fff;
@@ -132,7 +137,7 @@ $red: red;
     }
   }
 
-  &.gulu-theme-link{
+  &.gulu-theme-link {
     &.gulu-level-danger {
       color: $red;
 
@@ -142,8 +147,9 @@ $red: red;
       }
     }
   }
-  &.gulu-theme-text{
-    &.gulu-level-main{
+
+  &.gulu-theme-text {
+    &.gulu-level-main {
       color: $blue;
 
       &:hover,
@@ -151,6 +157,7 @@ $red: red;
         color: darken($blue, 10%);
       }
     }
+
     &.gulu-level-danger {
       color: $red;
 
@@ -159,6 +166,19 @@ $red: red;
         color: darken($red, 10%);
       }
     }
+  }
+
+  &.gulu-theme-button,
+  &.gulu-theme-link,
+  &.gulu-theme-text {
+    &[disabled] {
+      color: $grey;
+      cursor: not-allowed;
+    }
+  }
+
+  &.gulu-theme-button[disabled]:hover {
+    border-color: $grey;
   }
 }
 </style>
