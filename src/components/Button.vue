@@ -17,6 +17,10 @@ const {theme, size, level, disabled} = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 });
 const classes = computed(() => {
@@ -31,6 +35,7 @@ const classes = computed(() => {
 
 <template>
   <button class="gulu-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="gulu-loadingIndicator"></span>
     <slot/>
   </button>
 </template>
@@ -179,6 +184,27 @@ $grey: grey;
 
   &.gulu-theme-button[disabled]:hover {
     border-color: $grey;
+  }
+
+  > .gulu-loadingIndicator {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: $blue $blue $blue transparent;
+    animation: gulu-spin 1s infinite linear;
+  }
+}
+
+@keyframes gulu-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
