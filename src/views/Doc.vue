@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import Topnav from '../components/Topnav.vue';
+import {inject, Ref} from 'vue';
+
+const asideVisible = inject<Ref<boolean>>('asideVisible')!;
 </script>
 
 <template>
   <div>
     <Topnav/>
     <div class="content">
-      <aside>
+      <aside v-if="asideVisible">
         <h2>组件列表</h2>
         <ol>
           <li>
