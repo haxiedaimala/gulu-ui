@@ -1,15 +1,25 @@
 <script setup lang="ts">
-defineProps({
+import {computed} from 'vue';
+
+const props = defineProps({
   theme: {
     type: String,
     default: 'button'
+  },
+  size: {
+    type: String,
+    default: 'normal'
   }
+});
+const {theme, size} = props;
+const classes = computed(() => {
+  return {[`gulu-theme-${theme}`]: theme, [`gulu-size-${size}`]: size};
 });
 </script>
 
 
 <template>
-  <button class="gulu-button" :class="{[`gulu-theme-${theme}`]:theme}">
+  <button class="gulu-button" :class="classes">
     <slot/>
   </button>
 </template>
