@@ -12,12 +12,12 @@ defaults.forEach(ele => {
     throw new Error('Tabs 子标签名必须是 Tab');
   }
 });
-
+const titles = defaults.map(ele => ele.props!.title);
 </script>
 
 <template>
   <div>
-    tabs
+    <div v-for="(title,index) in titles" :key="index">{{ title }}</div>
     <component v-for="(c,index) in defaults" :key="index" :is="c"/>
   </div>
 </template>

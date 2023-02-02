@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    Tab
+    <slot/>
   </div>
 </template>
 
