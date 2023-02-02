@@ -31,6 +31,7 @@ const select = (title: string) => {
            @click="select(title)">
         {{ title }}
       </div>
+      <div class="gulu-tabs-nav-indicator"></div>
     </div>
     <div class="gulu-tabs-content">
       <template v-for="(c,index) in defaults" :key="index">
@@ -50,6 +51,7 @@ $border-color: #d9d9d9;
     display: flex;
     color: $color;
     border-bottom: 1px solid $border-color;
+    position: relative;
 
     > &-item {
       padding: 8px 0;
@@ -63,6 +65,15 @@ $border-color: #d9d9d9;
       &.selected {
         color: $blue;
       }
+    }
+
+    > &-indicator {
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      height: 3px;
+      width: 100px;
+      background: $blue;
     }
   }
 
