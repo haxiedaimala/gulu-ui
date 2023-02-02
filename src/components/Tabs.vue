@@ -2,6 +2,12 @@
 import {useSlots} from 'vue';
 import Tab from './Tab.vue';
 
+defineProps({
+  selected: String
+});
+const emit = defineEmits<{
+  (e: 'update:selected', value: string): void
+}>();
 if (useSlots().default === undefined) {
   throw new Error('Tabs 子内容不能为空');
 }
@@ -13,15 +19,23 @@ defaults.forEach(ele => {
   }
 });
 const titles = defaults.map(ele => ele.props!.title);
+const select = (title: string) => {
+  emit('update:selected', title);
+};
 </script>
 
 <template>
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav">
-      <div class="gulu-tabs-nav-item" v-for="(title,index) in titles" :key="index">{{ title }}</div>
+      <div class="gulu-tabs-nav-item" :class="{selected:title===selected}" v-for="(title,index) in titles" :key="index"
+           @click="select(title)">
+        {{ title }}
+      </div>
     </div>
     <div class="gulu-tabs-content">
-      <component class="gulu-tabs-content-item" v-for="(c,index) in defaults" :key="index" :is="c"/>
+      <template v-for="(c,index) in defaults" :key="index">
+        <component v-if="c.props.title===selected" class="gulu-tabs-content-item" :is="c"/>
+      </template>
     </div>
   </div>
 </template>
