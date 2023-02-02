@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  <div>Tab 组件</div>
+  <div>
+    Tab
+  </div>
 </template>
 
 <style lang="scss" scoped>
