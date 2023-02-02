@@ -41,22 +41,24 @@ const onCancle = () => {
 
 <template>
   <template v-if="visible">
-    <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
-    <div class="gulu-dialog-wrapper">
-      <div class="gulu-dialog">
-        <header>
-          <slot name="header"/>
-          <span @click="closeDialog" class="gulu-dialog-close"></span>
-        </header>
-        <main>
-          <slot name="content"/>
-        </main>
-        <footer>
-          <Button level="main" @click="onOk">Ok</Button>
-          <Button @click="onCancle">Cancle</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
+      <div class="gulu-dialog-wrapper">
+        <div class="gulu-dialog">
+          <header>
+            <slot name="header"/>
+            <span @click="closeDialog" class="gulu-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content"/>
+          </main>
+          <footer>
+            <Button level="main" @click="onOk">Ok</Button>
+            <Button @click="onCancle">Cancle</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
