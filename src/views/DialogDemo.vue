@@ -20,9 +20,14 @@ const fn2 = () => {
   <div>Dialog 示例</div>
   <h2>示例1</h2>
   <Button @click="toggleDialog">toggle</Button>
-  <Dialog v-model:visible="xxx" title="提示信息" :ok="fn1" :cancle="fn2" clickCloseOverlay>
-    <h3>content-1</h3>
-    <div>content-2</div>
+  <Dialog v-model:visible="xxx" :ok="fn1" :cancle="fn2" clickCloseOverlay>
+    <template v-slot:header>
+      <strong>加粗标题</strong>
+    </template>
+    <template #content>
+      <div>content-1</div>
+      <div>content-2</div>
+    </template>
   </Dialog>
 </template>
 

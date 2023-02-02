@@ -10,10 +10,6 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  title: {
-    type: String,
-    default: 'Hi标题'
-  },
   ok: {
     type: Function
   },
@@ -49,11 +45,11 @@ const onCancle = () => {
     <div class="gulu-dialog-wrapper">
       <div class="gulu-dialog">
         <header>
-          {{ title }}
+          <slot name="header"/>
           <span @click="closeDialog" class="gulu-dialog-close"></span>
         </header>
         <main>
-          <slot/>
+          <slot name="content"/>
         </main>
         <footer>
           <Button level="main" @click="onOk">Ok</Button>
