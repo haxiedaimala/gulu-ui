@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, ref, useSlots, watchEffect} from 'vue';
+import {ref, useSlots, watchPostEffect} from 'vue';
 import Tab from './Tab.vue';
 
 defineProps({
@@ -26,15 +26,13 @@ const select = (title: string) => {
 const selectedItem = ref<HTMLDivElement>();
 const indicator = ref<HTMLDivElement>();
 const container = ref<HTMLDivElement>();
-onMounted(() => {
-  watchEffect(() => {
-    const {width, left: left1} = selectedItem.value!.getBoundingClientRect();
-    //设置 indicator 的 width，根据被选中的 div 的 width
-    indicator.value!.style.width = width + 'px';
-    const {left: left2} = container.value!.getBoundingClientRect();
-    //设置 indicator 的 left，是被选中div的left-container的left
-    indicator.value!.style.left = (left1 - left2) + 'px';
-  });
+watchPostEffect(() => {
+  const {width, left: left1} = selectedItem.value!.getBoundingClientRect();
+  //设置 indicator 的 width，根据被选中的 div 的 width
+  indicator.value!.style.width = width + 'px';
+  const {left: left2} = container.value!.getBoundingClientRect();
+  //设置 indicator 的 left，是被选中div的left-container的left
+  indicator.value!.style.left = (left1 - left2) + 'px';
 });
 </script>
 
