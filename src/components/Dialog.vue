@@ -1,30 +1,60 @@
 <script setup lang="ts">
 import Button from './Button.vue';
 
-defineProps({
+const props = defineProps({
   visible: {
     type: Boolean,
     default: false
+  },
+  clickCloseOverlay: {
+    type: Boolean,
+    default: false
+  },
+  ok: {
+    type: Function
+  },
+  cancle: {
+    type: Function
   }
 });
+const emit = defineEmits<{
+  (e: 'update:visible', value: boolean): void
+}>();
+const closeDialog = () => {
+  emit('update:visible', !props.visible);
+};
+const onClickOverlay = () => {
+  if (props.clickCloseOverlay) {
+    closeDialog();
+  }
+};
+const onOk = () => {
+  if (props.ok && props.ok() !== false) {
+    closeDialog();
+  }
+};
+const onCancle = () => {
+  props.cancle ? props.cancle() : '';
+  closeDialog();
+};
 </script>
 
 <template>
   <template v-if="visible">
-    <div class="gulu-dialog-overlay"></div>
+    <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
     <div class="gulu-dialog-wrapper">
       <div class="gulu-dialog">
         <header>
           标题
-          <span class="gulu-dialog-close"></span>
+          <span @click="closeDialog" class="gulu-dialog-close"></span>
         </header>
         <main>
           <p>内容1</p>
           <p>内容2</p>
         </main>
         <footer>
-          <Button level="main">Ok</Button>
-          <Button>Cancle</Button>
+          <Button level="main" @click="onOk">Ok</Button>
+          <Button @click="onCancle">Cancle</Button>
         </footer>
       </div>
     </div>

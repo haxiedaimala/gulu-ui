@@ -7,13 +7,20 @@ const xxx = ref(false);
 const toggleDialog = () => {
   xxx.value = !xxx.value;
 };
+const fn1 = () => {
+  console.log(1);
+  return true;
+};
+const fn2 = () => {
+  console.log(2);
+};
 </script>
 
 <template>
   <div>Dialog 示例</div>
   <h2>示例1</h2>
   <Button @click="toggleDialog">toggle</Button>
-  <Dialog :visible="xxx"/>
+  <Dialog v-model:visible="xxx" :ok="fn1" :cancle="fn2" clickCloseOverlay/>
 </template>
 
 <style lang="scss" scoped>
