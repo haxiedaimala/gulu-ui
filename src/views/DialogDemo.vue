@@ -19,6 +19,7 @@ const fn2 = () => {
 <template>
   <div>Dialog 示例</div>
   <h2>示例1</h2>
+  <div style="position: relative; z-index: 1;">
   <Button @click="toggleDialog">toggle</Button>
   <Dialog v-model:visible="xxx" :ok="fn1" :cancle="fn2" clickCloseOverlay>
     <template v-slot:header>
@@ -29,6 +30,8 @@ const fn2 = () => {
       <div>content-2</div>
     </template>
   </Dialog>
+  </div>
+    <div style="position: relative; z-index: 2; width: 300px; height: 300px; background: red;"></div>
 </template>
 
 <style lang="scss" scoped>

@@ -41,7 +41,7 @@ const onCancle = () => {
 
 <template>
   <template v-if="visible">
-    <Teleport to="body">
+<!--    <Teleport to="body">-->
       <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
       <div class="gulu-dialog-wrapper">
         <div class="gulu-dialog">
@@ -58,7 +58,7 @@ const onCancle = () => {
           </footer>
         </div>
       </div>
-    </Teleport>
+<!--    </Teleport>-->
   </template>
 </template>
 
