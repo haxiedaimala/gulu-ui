@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, onUpdated, ref, useSlots} from 'vue';
+import {onMounted, ref, useSlots, watchEffect} from 'vue';
 import Tab from './Tab.vue';
 
 defineProps({
@@ -22,19 +22,20 @@ const titles = defaults.map(ele => ele.props!.title);
 const select = (title: string) => {
   emit('update:selected', title);
 };
+
 const selectedItem = ref<HTMLDivElement>();
 const indicator = ref<HTMLDivElement>();
 const container = ref<HTMLDivElement>();
-const x = () => {
-  const {width, left: left1} = selectedItem.value!.getBoundingClientRect();
-  //设置 indicator 的 width，根据被选中的 div 的 width
-  indicator.value!.style.width = width + 'px';
-  const {left: left2} = container.value!.getBoundingClientRect();
-  //设置 indicator 的 left，是被选中div的left-container的left
-  indicator.value!.style.left = (left1 - left2) + 'px';
-};
-onMounted(x);
-onUpdated(x);
+onMounted(() => {
+  watchEffect(() => {
+    const {width, left: left1} = selectedItem.value!.getBoundingClientRect();
+    //设置 indicator 的 width，根据被选中的 div 的 width
+    indicator.value!.style.width = width + 'px';
+    const {left: left2} = container.value!.getBoundingClientRect();
+    //设置 indicator 的 left，是被选中div的left-container的left
+    indicator.value!.style.left = (left1 - left2) + 'px';
+  });
+});
 </script>
 
 <template>
