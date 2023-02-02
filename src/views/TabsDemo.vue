@@ -11,8 +11,8 @@ const title = ref('导航1');
   <h2>示例1</h2>
   <Tabs v-model:selected="title">
     <Tab title="导航1">内容1</Tab>
-    <Tab title="导航2">内容2</Tab>
-    <Tab title="导航3">内容3</Tab>
+    <Tab title="导航2222">内容2</Tab>
+    <Tab title="导航333333">内容3</Tab>
   </Tabs>
 </template>
 
