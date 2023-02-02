@@ -22,13 +22,11 @@ const titles = defaults.map(ele => ele.props!.title);
 const select = (title: string) => {
   emit('update:selected', title);
 };
-const navItems = ref<HTMLDivElement[]>([]);
+const selectedItem = ref<HTMLDivElement>();
 const indicator = ref<HTMLDivElement>();
 const container = ref<HTMLDivElement>();
 const x = () => {
-  const divs = navItems.value;
-  const div = divs.filter(ele => ele.classList.contains('selected'))[0];
-  const {width, left: left1} = div.getBoundingClientRect();
+  const {width, left: left1} = selectedItem.value!.getBoundingClientRect();
   //设置 indicator 的 width，根据被选中的 div 的 width
   indicator.value!.style.width = width + 'px';
   const {left: left2} = container.value!.getBoundingClientRect();
@@ -43,7 +41,7 @@ onUpdated(x);
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav" ref="container">
       <div class="gulu-tabs-nav-item" :class="{selected:title===selected}" v-for="(title,index) in titles" :key="index"
-           @click="select(title)" :ref="(el)=>{if(el) navItems[index]=el}">
+           @click="select(title)" :ref="el=>{if(title===selected) selectedItem=el}">
         {{ title }}
       </div>
       <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
