@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import {inject, Ref} from 'vue';
 
+defineProps({
+  toggleAsideVisible: {
+    type: Boolean,
+    default: false
+  }
+});
 const asideVisible = inject<Ref<boolean>>('asideVisible')!;
 const toggleAside = () => {
   asideVisible.value = !asideVisible.value;
@@ -17,7 +23,9 @@ const toggleAside = () => {
     <ul class="menu">
       <router-link to="/doc">文档</router-link>
     </ul>
-    <span class="toggleAside" @click="toggleAside"></span>
+    <svg v-if="toggleAsideVisible" class="icon toggleAside" @click="toggleAside">
+      <use xlink:href="#icon-menu"></use>
+    </svg>
   </div>
 </template>
 
@@ -57,9 +65,8 @@ $color: #007974;
 
   > .toggleAside {
     display: none;
-    width: 24px;
-    height: 24px;
-    background: red;
+    width: 32px;
+    height: 32px;
     position: absolute;
     left: 16px;
     top: 50%;
