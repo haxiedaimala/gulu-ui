@@ -75,6 +75,7 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
       padding: 70px 16px 16px;
       height: 100%;
 
+
       > h2 {
         margin-bottom: 4px;
       }
@@ -82,6 +83,10 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
       > ol {
         > li {
           padding: 4px 0;
+
+          > .router-link-active {
+            text-decoration: underline;
+          }
         }
       }
 
