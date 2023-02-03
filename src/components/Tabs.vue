@@ -41,7 +41,7 @@ watchPostEffect(() => {
 </script>
 
 <template>
-  <div class="gulu-tabs">vkbuu
+  <div class="gulu-tabs">
     <div class="gulu-tabs-nav" ref="container">
       <div class="gulu-tabs-nav-item" :class="{selected:title===selected,readOnly:readOnlyItem(title)}"
            v-for="(title,index) in titles"
