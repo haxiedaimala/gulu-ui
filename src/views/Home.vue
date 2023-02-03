@@ -17,6 +17,9 @@ import Topnav from '../components/Topnav.vue';
 </template>
 
 <style lang="scss" scoped>
+$color-green: #02bcb0;
+$border-radius: 4px;
+$color: #007974;
 .gulu-wrapper {
   background: linear-gradient(145deg, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
 
@@ -32,13 +35,15 @@ import Topnav from '../components/Topnav.vue';
 
       a {
         margin: 0 8px;
-        background: #fff;
+        background: $color-green;
+        color: #fff;
         display: inline-block;
-        $h: 28px;
-        height: $h;
-        line-height: $h;
-        border-radius: $h/2;
-        padding: 0 8px;
+        border-radius: $border-radius;
+        padding: 8px 24px;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }

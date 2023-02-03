@@ -19,7 +19,9 @@ const toggleAside = () => {
 </template>
 
 <style lang="scss" scoped>
+$color: #007974;
 .topnav {
+  color: $color;
   display: flex;
   justify-content: center;
   align-items: center;
