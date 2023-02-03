@@ -35,6 +35,8 @@ $border-radius: 4px;
 $color: #007974;
 .gulu-wrapper {
   background: linear-gradient(145deg, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
+  border-bottom-left-radius: 40% 50%;
+  border-bottom-right-radius: 40% 50%;
 
   > .banner {
     color: $color;
