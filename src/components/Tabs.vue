@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, useSlots, VNode, watchPostEffect} from 'vue';
+import {ref, useSlots, watchPostEffect} from 'vue';
 import Tab from './Tab.vue';
 
 defineProps({
@@ -9,9 +9,13 @@ const emit = defineEmits<{
   (e: 'update:selected', value: string): void
 }>();
 const defaults = useSlots().default!();
+const titles = defaults.map(ele => ele.props?.title);
 const selectedItem = ref<HTMLDivElement>();
 const indicator = ref<HTMLDivElement>();
 const container = ref<HTMLDivElement>();
+const readOnlyItem=(title:string)=>{
+  return  defaults.filter(ele=>ele.props?.title===title)[0].props?.readOnly!==undefined
+}
 if (useSlots().default === undefined) {
   throw new Error('Tabs 子内容不能为空');
 }
@@ -20,9 +24,8 @@ defaults.forEach(ele => {
     throw new Error('Tabs 子标签名必须是 Tab');
   }
 });
-const toggleSelect = (options: VNode) => {
-  const title = options.props?.title;
-  if (options.props?.readOnly !== undefined) {
+const toggleSelect = (title: string) => {
+  if(readOnlyItem(title)){
     return;
   }
   emit('update:selected', title);
@@ -38,12 +41,13 @@ watchPostEffect(() => {
 </script>
 
 <template>
-  <div class="gulu-tabs">
+  <div class="gulu-tabs">vkbuu
     <div class="gulu-tabs-nav" ref="container">
-      <div class="gulu-tabs-nav-item" :class="{selected:c.props.title===selected,readOnly:c.props.readOnly!==undefined}" v-for="(c,index) in defaults"
+      <div class="gulu-tabs-nav-item" :class="{selected:title===selected,readOnly:readOnlyItem(title)}"
+           v-for="(title,index) in titles"
            :key="index"
-           @click="toggleSelect(c)" :ref="el=>{if(c.props.title===selected) selectedItem=el}">
-        {{ c.props.title }}
+           @click="toggleSelect(title)" :ref="el=>{if(title===selected) selectedItem=el}">
+        {{ title }}
       </div>
       <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
     </div>
@@ -79,7 +83,8 @@ $border-color: #d9d9d9;
       &.selected {
         color: $blue;
       }
-      &.readOnly{
+
+      &.readOnly {
         color: #bfbfbf;
         cursor: not-allowed;
       }
