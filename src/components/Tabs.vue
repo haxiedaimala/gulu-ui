@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, useSlots, watchPostEffect} from 'vue';
+import {ref, useSlots, VNode, watchPostEffect} from 'vue';
 import Tab from './Tab.vue';
 
 defineProps({
@@ -8,24 +8,25 @@ defineProps({
 const emit = defineEmits<{
   (e: 'update:selected', value: string): void
 }>();
+const defaults = useSlots().default!();
+const selectedItem = ref<HTMLDivElement>();
+const indicator = ref<HTMLDivElement>();
+const container = ref<HTMLDivElement>();
 if (useSlots().default === undefined) {
   throw new Error('Tabs 子内容不能为空');
 }
-
-const defaults = useSlots().default!();
 defaults.forEach(ele => {
   if (ele.type !== Tab) {
     throw new Error('Tabs 子标签名必须是 Tab');
   }
 });
-const titles = defaults.map(ele => ele.props!.title);
-const select = (title: string) => {
+const toggleSelect = (options: VNode) => {
+  const title = options.props?.title;
+  if (options.props?.readOnly !== undefined) {
+    return;
+  }
   emit('update:selected', title);
 };
-
-const selectedItem = ref<HTMLDivElement>();
-const indicator = ref<HTMLDivElement>();
-const container = ref<HTMLDivElement>();
 watchPostEffect(() => {
   const {width, left: left1} = selectedItem.value!.getBoundingClientRect();
   //设置 indicator 的 width，根据被选中的 div 的 width
@@ -39,9 +40,10 @@ watchPostEffect(() => {
 <template>
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav" ref="container">
-      <div class="gulu-tabs-nav-item" :class="{selected:title===selected}" v-for="(title,index) in titles" :key="index"
-           @click="select(title)" :ref="el=>{if(title===selected) selectedItem=el}">
-        {{ title }}
+      <div class="gulu-tabs-nav-item" :class="{selected:c.props.title===selected,readOnly:c.props.readOnly!==undefined}" v-for="(c,index) in defaults"
+           :key="index"
+           @click="toggleSelect(c)" :ref="el=>{if(c.props.title===selected) selectedItem=el}">
+        {{ c.props.title }}
       </div>
       <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
     </div>
@@ -76,6 +78,10 @@ $border-color: #d9d9d9;
 
       &.selected {
         color: $blue;
+      }
+      &.readOnly{
+        color: #bfbfbf;
+        cursor: not-allowed;
       }
     }
 
