@@ -15,11 +15,11 @@ const toggleAside = () => {
 
 <template>
   <div class="topnav">
-    <div class="logo">
+    <router-link to="/" class="logo">
       <svg class="icon">
         <use xlink:href="#icon-logo"></use>
       </svg>
-    </div>
+    </router-link>
     <ul class="menu">
       <router-link to="/doc">文档</router-link>
     </ul>
