@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <article>
+  <article class="markdown-body">
     <h1>开始使用</h1>
     <p>请先
       <router-link to="/doc/install">&nbsp;安装&nbsp;</router-link>
@@ -17,13 +17,13 @@
   &lt;div&gt;
     &lt;Button&gt;按钮&lt;/Button&gt;
   &lt;/div&gt;
-  &lt;/template&gt;
-  &lt;script&gt;
-    import {Button, Tabs, Switch, Dialog} from "gulu-ui"
-    export default {
-      components: {Button}
-    }
-  &lt;/script&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  import {Button, Tabs, Switch, Dialog} from "gulu-ui"
+  export default {
+    components: {Button}
+  }
+&lt;/script&gt;
   </code></pre>
   </article>
 </template>
