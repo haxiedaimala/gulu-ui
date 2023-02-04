@@ -1,11 +1,16 @@
 <script setup lang="ts">
-const props = defineProps<{
-  value: boolean
-}>();
+const props = defineProps({
+  value: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+});
 const emit = defineEmits<{
   (e: 'update:value', value: boolean): void
 }>();
 const toggleChecked = () => {
+  if (props.disabled) return;
   emit('update:value', !props.value);
 };
 </script>
