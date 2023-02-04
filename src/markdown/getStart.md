@@ -1,6 +1,6 @@
 # 开始使用
 
-请先(安装)[#/doc/install]本组件库。
+请先[安装](#/doc/install)本组件库。
 
 然后在你的代码中写入下面的代码
 
@@ -15,6 +15,7 @@ import Button from "gulu-ui"
 代码示例：
 
 ```angular2html
+
 <template>
   <Button/>
 </template>

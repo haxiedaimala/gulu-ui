@@ -1,12 +1,9 @@
 <script setup lang="ts">
-//@ts-ignore
-import intro from '../markdown/intro.md'
+import Markdown from '../components/Markdown.vue';
 </script>
 
 <template>
-  <article class="markdown-body">
-    <intro/>
-  </article>
+  <Markdown path="../markdown/intro.md"/>
 </template>
 
 <style lang="scss" scoped>
