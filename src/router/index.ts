@@ -9,6 +9,7 @@ import DocDemo from '../views/DocDemo.vue';
 import Markdown from '../components/Markdown.vue';
 import {h} from 'vue';
 
+const md = (filename: string) => h(Markdown, {path: `../markdown/${filename}.md`, key: filename});
 const history = createWebHashHistory();
 export const router = createRouter({
   history: history,
@@ -25,13 +26,13 @@ export const router = createRouter({
           component: DocDemo
         }, {
           path: 'intro',
-          component: h(Markdown, {path: '../markdown/intro.md'})
+          component: md('intro')
         }, {
           path: 'install',
-          component: h(Markdown, {path: '../markdown/install.md'})
+          component: md('install')
         }, {
           path: 'get-started',
-          component: h(Markdown, {path: '../markdown/getStart.md'})
+          component: md('getStart')
         }, {
           path: 'switch',
           component: SwitchDemo
