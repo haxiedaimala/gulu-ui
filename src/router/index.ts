@@ -6,9 +6,8 @@ import ButtonDemo from '../views/ButtonDemo.vue';
 import DialogDemo from '../views/DialogDemo.vue';
 import TabsDemo from '../views/TabsDemo.vue';
 import DocDemo from '../views/DocDemo.vue';
-import Intro from '../views/Intro.vue';
-import Install from '../views/Install.vue';
-import GetStarted from '../views/GetStarted.vue';
+import Markdown from '../components/Markdown.vue';
+import {h} from 'vue';
 
 const history = createWebHashHistory();
 export const router = createRouter({
@@ -26,13 +25,13 @@ export const router = createRouter({
           component: DocDemo
         }, {
           path: 'intro',
-          component: Intro
+          component: h(Markdown, {path: '../markdown/intro.md'})
         }, {
           path: 'install',
-          component: Install
+          component: h(Markdown, {path: '../markdown/install.md'})
         }, {
           path: 'get-started',
-          component: GetStarted
+          component: h(Markdown, {path: '../markdown/getStart.md'})
         }, {
           path: 'switch',
           component: SwitchDemo
