@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import Switch from '../components/Switch.vue';
 import Button from '../components/Button.vue';
-import {ref} from 'vue';
-
-const checked = ref(false);
-const checked2 = ref(false);
+import SwitchDemo1 from '../components/Switch1.demo.vue';
+import SwitchDemo2 from '../components/Switch2.demo.vue';
 </script>
 
 <template>
@@ -12,7 +9,7 @@ const checked2 = ref(false);
   <div class="switch">
     <h2>常规用法</h2>
     <div class="switch-component">
-      <Switch v-model:value="checked"/>
+      <SwitchDemo1/>
     </div>
     <div class="switch-actions">
       <Button>查看代码</Button>
@@ -24,7 +21,7 @@ const checked2 = ref(false);
   <div class="switch">
     <h2>支持 disabled</h2>
     <div class="switch-component">
-      <Switch v-model:value="checked2" disabled/>
+      <SwitchDemo2/>
     </div>
     <div class="switch-actions">
       <Button>查看代码</Button>
