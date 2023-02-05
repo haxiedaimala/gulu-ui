@@ -2,6 +2,8 @@
 import Button from '../components/Button.vue';
 import SwitchDemo1 from '../components/Switch1.demo.vue';
 import SwitchDemo2 from '../components/Switch2.demo.vue';
+
+console.log(SwitchDemo1.__sourceCode);
 </script>
 
 <template>
