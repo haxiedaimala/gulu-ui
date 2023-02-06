@@ -6,6 +6,7 @@ import {sourceCode} from './plugins/sourceCode.ts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/]

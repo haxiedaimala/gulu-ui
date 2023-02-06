@@ -28,7 +28,7 @@ $h2: ($h)-4px;
   width: $h*2;
   height: $h;
   border: none;
-  border-radius: $h/2;
+  border-radius: calc(#{$h} / 2);
   background: #bfbfbf;
   position: relative;
 
@@ -39,7 +39,7 @@ $h2: ($h)-4px;
     width: $h2;
     height: $h2;
     background: #fff;
-    border-radius: $h2/2;
+    border-radius: calc(#{$h} / 2);
     transition: all 250ms;
   }
 
