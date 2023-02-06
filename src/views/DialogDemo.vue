@@ -5,7 +5,7 @@ import Demo from '../components/Demo.vue';
 </script>
 
 <template>
-  <div>Dialog 组件示例</div>
+  <h1>Dialog 组件示例</h1>
   <Demo :component="DialogSourceCode1"/>
   <Demo :component="DialogSourceCode2"/>
 </template>

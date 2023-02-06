@@ -80,13 +80,18 @@ $color: #007974;
 
 .features {
   margin: 64px auto;
-  width: 400px;
+  padding: 0 16px;
 
   @media (min-width: 800px) {
     width: 800px;
   }
   @media (min-width: 1200px) {
     width: 1200px;
+    > ul {
+      > li {
+        flex: 1;
+      }
+    }
   }
 
   > ul {
@@ -94,7 +99,6 @@ $color: #007974;
     flex-wrap: wrap;
 
     > li {
-      width: 400px;
       margin: 16px 0;
       display: grid;
       justify-content: start;

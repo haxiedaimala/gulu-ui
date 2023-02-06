@@ -15,7 +15,6 @@ import Button from "gulu-ui"
 代码示例：
 
 ```angular2html
-
 <template>
   <Button/>
 </template>
