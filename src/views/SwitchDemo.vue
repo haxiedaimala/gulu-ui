@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import SwitchSourceCode1 from '../components/Switch1.sourceCode.vue';
-import SwitchSourceCode2 from '../components/Switch2.sourceCode.vue';
+import SwitchSourceCode1 from '../components/sourceCode/switch/Switch1.sourceCode.vue';
+import SwitchSourceCode2 from '../components/sourceCode/switch/Switch2.sourceCode.vue';
 import Demo from '../components/Demo.vue';
 </script>
 

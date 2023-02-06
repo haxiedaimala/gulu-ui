@@ -1,8 +1,8 @@
 <sourceCode>一键打开 Dialog</sourceCode>
 
 <script setup lang="ts">
-import Button from '../components/Button.vue';
-import {openDialog} from './openDialog';
+import Button from '../../Button.vue';
+import {openDialog} from '../../openDialog';
 import {h} from 'vue';
 
 const showDialog = () => {

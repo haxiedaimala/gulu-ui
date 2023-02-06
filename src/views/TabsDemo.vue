@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TabSourceCode1 from '../components/Tab1.sourceCode.vue';
-import TabSourceCode2 from '../components/Tab2.sourceCode.vue';
+import TabSourceCode1 from '../components/sourceCode/tabs/Tab1.sourceCode.vue';
+import TabSourceCode2 from '../components/sourceCode/tabs/Tab2.sourceCode.vue';
 import Demo from '../components/Demo.vue';
 </script>
 
