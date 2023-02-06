@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//@ts-nocheck
 import {ref, useSlots, watchPostEffect} from 'vue';
 import Tab from './Tab.vue';
 
@@ -53,7 +54,7 @@ watchPostEffect(() => {
     </div>
     <div class="gulu-tabs-content">
       <template v-for="(c,index) in defaults" :key="index">
-        <component v-if="c.props.title===selected" class="gulu-tabs-content-item" :is="c"/>
+        <component v-if="c.props!==null&&c.props.title===selected" class="gulu-tabs-content-item" :is="c"/>
       </template>
     </div>
   </div>

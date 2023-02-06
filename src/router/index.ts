@@ -7,8 +7,11 @@ import DialogDemo from '../views/DialogDemo.vue';
 import TabsDemo from '../views/TabsDemo.vue';
 import Markdown from '../components/Markdown.vue';
 import {h} from 'vue';
+import intro from '../markdown/intro.md';
+import install from '../markdown/install.md';
+import getStart from '../markdown/getStart.md';
 
-const md = (filename: string) => h(Markdown, {path: `../markdown/${filename}.md`, key: filename});
+const md = (component: string, key: string) => h(Markdown, {content: component, key: key});
 const history = createWebHashHistory();
 export const router = createRouter({
   history: history,
@@ -25,13 +28,13 @@ export const router = createRouter({
           redirect: '/doc/intro'
         }, {
           path: 'intro',
-          component: md('intro')
+          component: md(intro, 'intro')
         }, {
           path: 'install',
-          component: md('install')
+          component: md(install, 'install')
         }, {
           path: 'get-started',
-          component: md('getStart')
+          component: md(getStart, 'getStart')
         }, {
           path: 'switch',
           component: SwitchDemo
