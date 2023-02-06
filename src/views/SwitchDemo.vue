@@ -2,8 +2,11 @@
 import Button from '../components/Button.vue';
 import SwitchSourceCode1 from '../components/Switch1.sourceCode.vue';
 import SwitchSourceCode2 from '../components/Switch2.sourceCode.vue';
-
-console.log(SwitchSourceCode1);
+//@ts-ignore
+import Prism from 'prismjs';
+import 'prismjs/themes/prism.css';
+</script>
+<script lang="ts">
 </script>
 
 <template>
@@ -17,7 +20,7 @@ console.log(SwitchSourceCode1);
       <Button>查看代码</Button>
     </div>
     <div class="switch-code">
-      <pre>{{ SwitchSourceCode1.__sourceCode }}</pre>
+      <pre class="language-css" v-html="Prism.highlight(SwitchSourceCode1.__sourceCode, Prism.languages.html, 'html')"></pre>
     </div>
   </div>
   <div class="switch">
@@ -29,7 +32,7 @@ console.log(SwitchSourceCode1);
       <Button>查看代码</Button>
     </div>
     <div class="switch-code">
-      <pre>{{ SwitchSourceCode2.__sourceCode }}</pre>
+      <pre class="language-css" v-html="Prism.highlight(SwitchSourceCode2.__sourceCode, Prism.languages.html, 'html')"></pre>
     </div>
   </div>
 </template>
