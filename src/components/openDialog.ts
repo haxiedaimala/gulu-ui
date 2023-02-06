@@ -2,7 +2,7 @@ import {createApp, h} from 'vue';
 import Dialog from './Dialog.vue';
 
 interface Options {
-  title: string,
+  title: Object,
   content: string,
   clickCloseOverlay: boolean,
   ok: () => boolean | void,
