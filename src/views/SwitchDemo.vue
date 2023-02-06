@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import Button from '../components/Button.vue';
-import SwitchDemo1 from '../components/Switch1.demo.vue';
-import SwitchDemo2 from '../components/Switch2.demo.vue';
+import SwitchSourceCode1 from '../components/Switch1.sourceCode.vue';
+import SwitchSourceCode2 from '../components/Switch2.sourceCode.vue';
+
+console.log(SwitchSourceCode1);
 </script>
 
 <template>
@@ -9,25 +11,25 @@ import SwitchDemo2 from '../components/Switch2.demo.vue';
   <div class="switch">
     <h2>常规用法</h2>
     <div class="switch-component">
-      <SwitchDemo1/>
+      <SwitchSourceCode1/>
     </div>
     <div class="switch-actions">
       <Button>查看代码</Button>
     </div>
     <div class="switch-code">
-      <pre>&lt;Switch v-model:value="bool" /&gt;</pre>
+      <pre>{{ SwitchSourceCode1.__sourceCode }}</pre>
     </div>
   </div>
   <div class="switch">
     <h2>支持 disabled</h2>
     <div class="switch-component">
-      <SwitchDemo2/>
+      <SwitchSourceCode2/>
     </div>
     <div class="switch-actions">
       <Button>查看代码</Button>
     </div>
     <div class="switch-code">
-      <pre>&lt;Switch v-model:value="bool" /&gt;</pre>
+      <pre>{{ SwitchSourceCode2.__sourceCode }}</pre>
     </div>
   </div>
 </template>

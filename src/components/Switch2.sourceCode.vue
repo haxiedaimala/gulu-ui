@@ -1,3 +1,5 @@
+<sourceCode>支持 disabled</sourceCode>
+
 <script setup lang="ts">
 import Switch from '../components/Switch.vue';
 import {ref} from 'vue';
