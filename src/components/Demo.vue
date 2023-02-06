@@ -3,12 +3,17 @@ import Button from '../components/Button.vue';
 //@ts-ignore
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
+import {computed, ref} from 'vue';
 
-defineProps({
+const props = defineProps({
   component: {
-    type: Object
+    type: Object,
+    required: true
   }
 });
+const html = computed(() => Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html'));
+const codeVisible = ref(false);
+const toggleCodeVisible = () => codeVisible.value = !codeVisible.value;
 </script>
 
 <template>
@@ -18,11 +23,10 @@ defineProps({
       <component :is="component"/>
     </div>
     <div class="switch-actions">
-      <Button>查看代码</Button>
+      <Button @click="toggleCodeVisible">查看代码</Button>
     </div>
-    <div class="switch-code">
-      <pre class="language-css"
-           v-html="Prism.highlight(component.__sourceCode, Prism.languages.html, 'html')"></pre>
+    <div class="switch-code" v-if="codeVisible">
+      <pre class="language-css" v-html="html"></pre>
     </div>
   </div>
 </template>
