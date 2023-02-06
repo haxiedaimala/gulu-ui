@@ -13,7 +13,8 @@ const props = defineProps({
 });
 const html = computed(() => Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html'));
 const codeVisible = ref(false);
-const toggleCodeVisible = () => codeVisible.value = !codeVisible.value;
+const showCodeVisible = () => codeVisible.value = true;
+const hideCodeVisible = () => codeVisible.value = false;
 </script>
 
 <template>
@@ -23,7 +24,8 @@ const toggleCodeVisible = () => codeVisible.value = !codeVisible.value;
       <component :is="component"/>
     </div>
     <div class="switch-actions">
-      <Button @click="toggleCodeVisible">查看代码</Button>
+      <Button @click="showCodeVisible" v-if="!codeVisible">查看代码</Button>
+      <Button @click="hideCodeVisible" v-if="codeVisible">隐藏代码</Button>
     </div>
     <div class="switch-code" v-if="codeVisible">
       <pre class="language-css" v-html="html"></pre>
