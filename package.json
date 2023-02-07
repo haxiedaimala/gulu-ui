@@ -1,9 +1,12 @@
 {
-  "name": "gulu-ui",
+  "name": "gulu-ui-self",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/lib/gulu.umd.js",
-  "module": "dist/lib/gulu.em.js",
+  "files": [
+    "dist/lib/*"
+  ],
+  "module": "dist/lib/gulu.es.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -29,7 +32,7 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/lib/gulu.em.js",
+      "import": "./dist/lib/gulu.es.js",
       "require": "./dist/lib/gulu.umd.js"
     },
     "./dist/lib/style.css": "./dist/lib/style.css"
