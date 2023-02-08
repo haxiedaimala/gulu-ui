@@ -1,7 +1,7 @@
 <sourceCode>支持 level</sourceCode>
 
 <script setup lang="ts">
-import Button from '../../Button.vue';
+import Button from '../../components/Button.vue';
 </script>
 
 <template>

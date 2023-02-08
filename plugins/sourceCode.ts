@@ -7,13 +7,13 @@ export function sourceCode() {
     name: 'sourceCode',
     transform(code, id) {
       if (
-        !/\/src\/components\/.*\.sourceCode\.vue/.test(id) ||
+        !/\/src\/sourceCode\/.*\.sourceCode\.vue/.test(id) ||
         !/vue&type=sourceCode/.test(id)
       ) {
         return;
       }
       //获取特定文件名的文件路径
-      let path = `.${id.match(/\/src\/components\/sourceCode\/.*\/.*\.sourceCode\.vue/)[0]}`;
+      let path = `.${id.match(/\/src\/sourceCode\/.*\/.*\.sourceCode\.vue/)[0]}`;
       //根据路径获取内容
       const file = fs.readFileSync(path).toString();
       //找到 自定义代码块部分 的代码

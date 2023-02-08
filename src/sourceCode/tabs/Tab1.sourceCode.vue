@@ -1,8 +1,8 @@
 <sourceCode>常规使用</sourceCode>
 
 <script setup lang="ts">
-import Tabs from '../../Tabs.vue';
-import Tab from '../../Tab.vue';
+import Tabs from '../../components/Tabs.vue';
+import Tab from '../../components/Tab.vue';
 import {ref} from 'vue';
 
 const title = ref('导航1');
