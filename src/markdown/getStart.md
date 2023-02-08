@@ -14,7 +14,7 @@ import {Button, Switch, Dialog, openDialog, Tabs, Tab} from "gulu-ui-self"
 
 代码示例：
 
-```vue
+```html
 <template>
   <Button/>
 </template>

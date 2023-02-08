@@ -16,7 +16,7 @@ const toggleChecked = () => {
 </script>
 
 <template>
-  <button class="gulu-switch" :class="{'gulu-checked':value}" @click="toggleChecked">
+  <button class="gulu-switch" :class="{'gulu-checked':value,disabled:disabled}" @click="toggleChecked">
     <span></span>
   </button>
 </template>
@@ -31,6 +31,10 @@ $h2: ($h)-4px;
   border-radius: calc(#{$h} / 2);
   background: #bfbfbf;
   position: relative;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
 
   > span {
     position: absolute;

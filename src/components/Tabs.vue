@@ -14,9 +14,9 @@ const titles = defaults.map(ele => ele.props?.title);
 const selectedItem = ref<HTMLDivElement>();
 const indicator = ref<HTMLDivElement>();
 const container = ref<HTMLDivElement>();
-const readOnlyItem=(title:string)=>{
-  return  defaults.filter(ele=>ele.props?.title===title)[0].props?.readOnly!==undefined
-}
+const disabled = (title: string) => {
+  return defaults.filter(ele => ele.props?.title === title)[0].props?.disabled !== undefined;
+};
 if (useSlots().default === undefined) {
   throw new Error('Tabs 子内容不能为空');
 }
@@ -26,7 +26,7 @@ defaults.forEach(ele => {
   }
 });
 const toggleSelect = (title: string) => {
-  if(readOnlyItem(title)){
+  if (disabled(title)) {
     return;
   }
   emit('update:selected', title);
@@ -44,7 +44,7 @@ watchPostEffect(() => {
 <template>
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav" ref="container">
-      <div class="gulu-tabs-nav-item" :class="{selected:title===selected,readOnly:readOnlyItem(title)}"
+      <div class="gulu-tabs-nav-item" :class="{selected:title===selected,readOnly:disabled(title)}"
            v-for="(title,index) in titles"
            :key="index"
            @click="toggleSelect(title)" :ref="el=>{if(title===selected) selectedItem=el}">

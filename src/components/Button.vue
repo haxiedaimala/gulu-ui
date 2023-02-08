@@ -1,28 +1,13 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-const {theme, size, level, disabled,loading} = defineProps({
-  theme: {
-    type: String,
-    default: 'button'
-  },
-  size: {
-    type: String,
-    default: 'normal'
-  },
-  level: {
-    type: String,
-    default: 'normal'
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  loading: {
-    type: Boolean,
-    default: false
-  }
-});
+const {theme, size, level, disabled, loading} = defineProps<{
+  theme?: 'link' | 'text' | 'button',
+  size?: 'big' | 'small' | 'normal',
+  level?: 'main' | 'danger' | 'normal',
+  disabled?: boolean,
+  loading?: boolean
+}>();
 const classes = computed(() => {
   return {
     [`gulu-theme-${theme}`]: theme,
