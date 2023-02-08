@@ -4,8 +4,8 @@
 
 然后在你的代码中写入下面的代码
 
-```angular2html
-import Button from "gulu-ui"
+```javascript
+import {Button, Switch, Dialog, openDialog, Tabs, Tab} from "gulu-ui-self"
 ```
 
 就可以使用我提供的组件了。
@@ -14,12 +14,12 @@ import Button from "gulu-ui"
 
 代码示例：
 
-```angular2html
+```vue
 <template>
   <Button/>
 </template>
 
 <script setup>
-  import Button from '.gulu-ui'
+import {Button} from 'gulu-ui-self'
 </script>
 ```

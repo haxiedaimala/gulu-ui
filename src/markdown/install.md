@@ -2,14 +2,14 @@
 
 打开终端运行下列命令：
 
-```angular2html
-npm install gulu-ui
+```bash
+npm install "gulu-ui-self"
 ```
 
 或
 
-```angular2html
-yarn add gulu-ui
+```bash
+yarn add "gulu-ui-self"
 ```
 
 下一节：[开始使用](#/doc/get-started)
