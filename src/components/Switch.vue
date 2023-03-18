@@ -1,22 +1,34 @@
 <script setup lang="ts">
+import {ref, watchPostEffect} from 'vue';
+
 const props = defineProps({
-  value: Boolean,
+  modelValue: Boolean,
   disabled: {
     type: Boolean,
     default: false
+  },
+  style: {
+    type: Object
   }
 });
 const emit = defineEmits<{
-  (e: 'update:value', value: boolean): void
+  (e: 'update:modelValue', value: boolean): void
 }>();
 const toggleChecked = () => {
   if (props.disabled) return;
-  emit('update:value', !props.value);
+  emit('update:modelValue', !props.modelValue);
 };
+const buttonItem = ref<HTMLButtonElement>();
+watchPostEffect(() => {
+  if (props.style) {
+    buttonItem.value!.style.backgroundColor = props.modelValue ? props.style['--switch-on-color'] : props.style['--switch-off-color'];
+  }
+});
 </script>
 
 <template>
-  <button class="gulu-switch" :class="{'gulu-checked':value,disabled:disabled}" @click="toggleChecked">
+  <button ref="buttonItem" class="gulu-switch" :class="{'gulu-checked':modelValue,disabled:disabled}"
+          @click="toggleChecked">
     <span></span>
   </button>
 </template>
@@ -31,6 +43,10 @@ $h2: ($h)-4px;
   border-radius: calc(#{$h} / 2);
   background: #bfbfbf;
   position: relative;
+
+  & + & {
+    margin-left: 8px;
+  }
 
   &.disabled {
     cursor: not-allowed;
