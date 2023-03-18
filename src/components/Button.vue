@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-const {theme, size, level, disabled, loading} = defineProps<{
+const {theme = 'button', size = 'normal', level = 'default', disabled, loading} = defineProps<{
   theme?: 'link' | 'text' | 'button',
   size?: 'big' | 'small' | 'normal',
-  level?: 'main' | 'danger' | 'normal',
+  level?: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger',
   disabled?: boolean,
-  loading?: boolean
+  loading?: boolean,
 }>();
 const classes = computed(() => {
   return {
     [`gulu-theme-${theme}`]: theme,
     [`gulu-size-${size}`]: size,
-    [`gulu-level-${level}`]: level
+    [`gulu-level-${level}`]: level,
   };
 });
 </script>
@@ -26,16 +26,14 @@ const classes = computed(() => {
 </template>
 
 <style lang="scss">
-$h: 32px;
-$border-color: #d9d9d9;
-$color: #333;
-$blue: #40a9ff;
+@import "../assets/helper";
+
 $radius: 4px;
 $red: red;
 $grey: grey;
 .gulu-button {
   box-sizing: border-box;
-  height: $h;
+  height: $height-button;
   padding: 0 12px;
   cursor: pointer;
   display: inline-flex;
@@ -43,8 +41,8 @@ $grey: grey;
   align-items: center;
   white-space: nowrap;
   background: white;
-  color: $color;
-  border: 1px solid $border-color;
+  color: $color-font;
+  border: 1px solid $color-border;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
   transition: all 250ms;
@@ -55,8 +53,8 @@ $grey: grey;
 
   &:hover,
   &:focus {
-    color: $blue;
-    border-color: $blue;
+    color: $color-button-normal;
+    border-color: $color-button-normal;
   }
 
   &:focus {
@@ -70,11 +68,11 @@ $grey: grey;
   &.gulu-theme-link {
     border-color: transparent;
     box-shadow: none;
-    color: $blue;
+    color: $color-button-normal;
 
     &:hover,
     &:focus {
-      color: lighten($blue, 10%);
+      color: lighten($color-button-normal, 10%);
     }
   }
 
@@ -102,61 +100,124 @@ $grey: grey;
   }
 
   &.gulu-theme-button {
-    &.gulu-level-main {
-      background: $blue;
+    &.gulu-level-primary {
+      background: $color-button-normal;
       color: #fff;
-      border-color: $blue;
+      border-color: $color-button-normal;
 
       &:hover,
       &:focus {
-        background: darken($blue, 10%);
-        border-color: darken($blue, 10%);
+        background: darken($color-button-normal, 10%);
+        border-color: darken($color-button-normal, 10%);
+      }
+    }
+
+    &.gulu-level-success {
+      background: $color-button-success;
+      color: #fff;
+      border-color: $color-button-success;
+
+      &:hover,
+      &:focus {
+        background: darken($color-button-success, 10%);
+        border-color: darken($color-button-success, 10%);
+      }
+    }
+
+    &.gulu-level-info {
+      background: $color-button-info;
+      color: #fff;
+      border-color: $color-button-info;
+
+      &:hover,
+      &:focus {
+        background: darken($color-button-info, 10%);
+        border-color: darken($color-button-info, 10%);
+      }
+    }
+
+    &.gulu-level-warning {
+      background: $color-button-warning;
+      color: #fff;
+      border-color: $color-button-warning;
+
+      &:hover,
+      &:focus {
+        background: darken($color-button-warning, 10%);
+        border-color: darken($color-button-warning, 10%);
       }
     }
 
     &.gulu-level-danger {
-      background: $red;
-      border-color: $red;
+      background: $color-button-danger;
+      border-color: $color-button-danger;
       color: #fff;
 
       &:hover,
       &:focus {
-        background: darken($red, 10%);
-        border-color: darken($red, 10%);
+        background: darken($color-button-danger, 10%);
+        border-color: darken($color-button-danger, 10%);
       }
     }
   }
 
-  &.gulu-theme-link {
+  &.gulu-theme-link, &.gulu-theme-text {
+    &.gulu-level-default {
+      color: $color-font;
+
+      &:hover,
+      &:focus {
+        color: darken($color-font, 10%);
+      }
+    }
+
+    &.gulu-level-primary {
+      color: $color-button-normal;
+
+      &:hover,
+      &:focus {
+        color: darken($color-button-normal, 10%);
+      }
+    }
+
+    &.gulu-level-success {
+      color: $color-button-success;
+
+      &:hover,
+      &:focus {
+        color: darken($color-button-success, 10%);
+      }
+    }
+
+    &.gulu-level-info {
+      color: $color-button-info;
+
+      &:hover,
+      &:focus {
+        color: darken($color-button-info, 10%);
+      }
+    }
+
+    &.gulu-level-warning {
+      color: $color-button-warning;
+
+      &:hover,
+      &:focus {
+        color: darken($color-button-warning, 10%);
+      }
+    }
+
     &.gulu-level-danger {
-      color: $red;
+      color: $color-button-danger;
 
       &:hover,
       &:focus {
-        color: darken($red, 10%);
+        color: darken($color-button-danger, 10%);
       }
     }
+
   }
 
-  &.gulu-theme-text {
-    &.gulu-level-main {
-      color: $blue;
-
-      &:hover,
-      &:focus {
-        color: darken($blue, 10%);
-      }
-    }
-
-    &.gulu-level-danger {
-      color: $red;
-
-      &:hover,
-      &:focus {
-        color: darken($red, 10%);
-      }
-    }
-  }
 
   &.gulu-theme-button,
   &.gulu-theme-link,
@@ -179,7 +240,7 @@ $grey: grey;
     border-radius: 8px;
     border-width: 2px;
     border-style: solid;
-    border-color: $blue $blue $blue transparent;
+    border-color: $color-button-normal $color-button-normal $color-button-normal transparent;
     animation: gulu-spin 1s infinite linear;
   }
 }
