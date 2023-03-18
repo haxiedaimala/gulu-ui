@@ -34,14 +34,14 @@ watchPostEffect(() => {
 </template>
 
 <style lang="scss">
-$h: 22px;
-$h2: ($h)-4px;
+@import "../assets/helper";
+
 .gulu-switch {
-  width: $h*2;
-  height: $h;
+  width: $height-normal-switch*2;
+  height: $height-normal-switch;
   border: none;
-  border-radius: calc(#{$h} / 2);
-  background: #bfbfbf;
+  border-radius: calc(#{$height-normal-switch} / 2);
+  background: $color-off-switch;
   position: relative;
 
   & + & {
@@ -56,18 +56,18 @@ $h2: ($h)-4px;
     position: absolute;
     top: 2px;
     left: 2px;
-    width: $h2;
-    height: $h2;
+    width: $height-normal-switch-span;
+    height: $height-normal-switch-span;
     background: #fff;
-    border-radius: calc(#{$h} / 2);
+    border-radius: calc(#{$height-normal-switch} / 2);
     transition: all 250ms;
   }
 
   &.gulu-checked {
-    background: #1890ff;
+    background: $color-on-switch;
 
     > span {
-      left: calc(100% - #{$h2} - 2px);
+      left: calc(100% - #{$height-normal-switch-span} - 2px);
     }
   }
 
@@ -77,13 +77,13 @@ $h2: ($h)-4px;
 
   &:active {
     > span {
-      width: $h2+4px;
+      width: $height-normal-switch-span+4px;
     }
   }
 
   &.gulu-checked:active {
     > span {
-      width: $h2+4px;
+      width: $height-normal-switch-span+4px;
       margin-left: -4px;
     }
   }

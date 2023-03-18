@@ -2,12 +2,18 @@ $color-text: #6f2e6a;
 $color-tab-slide: #c67085;
 $color-tab-bg: #fff9f9;
 $color-theme: #ff3000;
+$color-off-switch:#bfbfbf;
+$color-on-switch:#1890ff;
 
 $box-shadow-nav: 0 3px 3px rgba(51, 51, 51, .1);
 $box-shadow-aside: 3px 0 3px rgba(51, 51, 51, .1);
 
 $index-top-nav: 20;
 $index-aside: 10;
+
+$height-normal-switch: 22px;
+$height-normal-switch-span: $height-normal-switch - 4px;
+
 
 %code {
   font-family: 'JetBrains Mono', "Source Code Pro", Menlo, Monaco, Consolas, 'Courier New', monospace;
