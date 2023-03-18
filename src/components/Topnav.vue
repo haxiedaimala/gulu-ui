@@ -14,7 +14,7 @@ const toggleAside = () => {
 </script>
 
 <template>
-  <div class="topnav">
+  <div class="top-nav">
     <router-link to="/" class="logo">
       <svg class="icon">
         <use xlink:href="#icon-logo"></use>
@@ -30,19 +30,20 @@ const toggleAside = () => {
 </template>
 
 <style lang="scss" scoped>
-$color: #007974;
-$topnav-index: 20;
-.topnav {
-  color: $color;
+@import "../assets/helper";
+
+.top-nav {
+  background-color: #fff;
+  box-shadow: $box-shadow-nav;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: 16px 2em;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: $topnav-index;
+  z-index: $index-top-nav;
 
   > .logo {
     max-width: 6em;
@@ -58,6 +59,7 @@ $topnav-index: 20;
     display: flex;
     flex-wrap: nowrap;
     white-space: nowrap;
+    color: $color-text;
 
     > li {
       margin: 0 1em;

@@ -39,7 +39,7 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
         </ol>
       </aside>
       <main>
-        <router-view></router-view>
+        <router-view/>
       </main>
     </div>
   </div>
@@ -47,7 +47,8 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
 
 
 <style lang="scss" scoped>
-$aside-index: 10;
+@import "../assets/helper";
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -60,38 +61,57 @@ $aside-index: 10;
   > .content {
     flex-grow: 1;
     padding-top: 60px;
-    padding-left: 156px;
+    padding-left: 300px;
     @media (max-width: 500px) {
       padding-left: 0;
     }
     display: flex;
 
     > aside {
-      background: lightblue;
-      width: 150px;
       flex-shrink: 0;
       position: fixed;
       top: 0;
       left: 0;
-      padding: 70px 0 16px;
+      padding: 80px 0 16px;
       height: 100%;
-      z-index: $aside-index;
-
+      width: 285px;
+      z-index: $index-aside;
+      box-shadow: $box-shadow-aside;
+      background: #fff;
 
       > h2 {
-        margin-bottom: 4px;
-        padding: 0 16px;
+        margin: 16px 4px;
+        padding: 0 40px;
       }
 
       > ol {
         > li {
           a {
-            padding: 4px 16px;
+            line-height: 40px;
+            padding: 0 48px;
             display: block;
+            color: $color-text;
+
+            &:hover {
+              color: $color-theme;
+            }
           }
 
           .router-link-active {
-            background: white;
+            background-color: $color-tab-bg;
+            position: relative;
+            color: $color-theme;
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              height: 100%;
+              width: 3px;
+              background-color: $color-theme;
+              animation: 0.8s slide;
+            }
           }
         }
       }
@@ -100,11 +120,19 @@ $aside-index: 10;
 
     > main {
       flex-grow: 1;
-      padding: 16px;
+      padding: 56px;
       background: #fff;
       overflow: auto;
     }
   }
 }
 
+@keyframes slide {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg)
+  }
+}
 </style>
