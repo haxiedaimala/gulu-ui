@@ -20,7 +20,7 @@ const fn2 = () => {
 
 <template>
   <Button @click="toggleDialog">toggle</Button>
-  <Dialog v-model:visible="isVisible" :ok="fn1" :cancle="fn2" clickCloseOverlay>
+  <Dialog v-model="isVisible" :ok="fn1" :cancle="fn2" clickCloseOverlay>
     <template v-slot:header>
       <strong>加粗标题</strong>
     </template>

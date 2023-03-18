@@ -11,10 +11,10 @@ const showDialog = () => {
     content: 'content',
     clickCloseOverlay: false,
     ok() {
-      console.log('ok');
+      alert('ok');
     },
     cancle() {
-      console.log('cancle');
+      alert('cancle');
     }
   });
 };

@@ -2,17 +2,17 @@
 import Button from './Button.vue';
 
 const props = defineProps<{
-  visible?: boolean,
+  modelValue?: boolean,
   clickCloseOverlay?: boolean,
   ok: () => boolean | void,
   cancle: () => boolean | void
 }>();
 
 const emit = defineEmits<{
-  (e: 'update:visible', value: boolean): void
+  (e: 'update:modelValue', value: boolean): void
 }>();
 const closeDialog = () => {
-  emit('update:visible', !props.visible);
+  emit('update:modelValue', !props.modelValue);
 };
 const onClickOverlay = () => {
   if (props.clickCloseOverlay) {
@@ -31,7 +31,7 @@ const onClickCancle = () => {
 </script>
 
 <template>
-  <template v-if="visible">
+  <template v-if="modelValue">
     <Teleport to="body">
       <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
       <div class="gulu-dialog-wrapper">
@@ -82,8 +82,8 @@ $border-color: #d9d9d9;
   }
 
   > header {
+    position: relative;
     padding: 12px 16px;
-    border-bottom: 1px solid $border-color;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -95,13 +95,14 @@ $border-color: #d9d9d9;
   }
 
   > footer {
-    border-top: 1px solid $border-color;
     padding: 12px 16px;
     text-align: right;
   }
 
   &-close {
-    position: relative;
+    position: absolute;
+    top: 16px;
+    right: 16px;
     width: 16px;
     height: 16px;
     cursor: pointer;

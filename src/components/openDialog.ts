@@ -22,8 +22,8 @@ export const openDialog = (options: Options) => {
       return h(
         Dialog,
         {
-          visible: true,
-          'onUpdate:visible': (newVisible: boolean) => {
+          modelValue: true,
+          'onUpdate:modelValue': (newVisible: boolean) => {
             if (!newVisible) {
               close();
             }
