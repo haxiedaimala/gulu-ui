@@ -27,6 +27,12 @@ const props = defineProps({
   showPassword: {
     type: Boolean,
     default: false
+  },
+  error: {
+    type: String
+  },
+  success: {
+    type: String
   }
 });
 const emits = defineEmits<{
@@ -63,6 +69,7 @@ watchPostEffect(() => {
   <div class="gulu-input-wrapper" ref="inputWrapper">
     <input :type="inputType"
            class="gulu-input"
+           :class="{['gulu-input-error']:error}"
            :value="modelValue"
            :disabled="disabled"
            @input="$emit('update:modelValue',$event.target.value)"
@@ -79,6 +86,18 @@ watchPostEffect(() => {
         <use :xlink:href="`#icon${name}show-pwd`"></use>
       </svg>
     </span>
+    <template v-if="error">
+      <svg class="gulu-input-icon" aria-hidden="true">
+        <use xlink:href="#icon-error"></use>
+      </svg>
+      <span class="gulu-input-error-message">{{ error }}</span>
+    </template>
+    <template v-if="success">
+      <svg class="gulu-input-icon" aria-hidden="true">
+        <use xlink:href="#icon-success"></use>
+      </svg>
+      <span class="gulu-input-success-message">{{ success }}</span>
+    </template>
   </div>
 </template>
 
@@ -87,7 +106,7 @@ watchPostEffect(() => {
 
 .gulu-input-wrapper {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
 
   .gulu-input {
@@ -115,6 +134,10 @@ watchPostEffect(() => {
       &:hover {
         border-color: $color-border;
       }
+    }
+
+    &.gulu-input-error {
+      border-color: $color-button-danger;
     }
   }
 
@@ -154,6 +177,23 @@ watchPostEffect(() => {
     width: 1em;
     height: 1em;
     cursor: pointer;
+  }
+
+  .gulu-input-icon {
+    width: 1.5em;
+    height: 1em;
+    margin: 0 0.3em 0 0.5em;
+  }
+
+  .gulu-input-error-message,
+  .gulu-input-success-message {
+    white-space: nowrap;
+    font-size: 12px;
+    color: $color-button-danger;
+  }
+
+  .gulu-input-success-message {
+    color: $color-button-success;
   }
 }
 </style>
