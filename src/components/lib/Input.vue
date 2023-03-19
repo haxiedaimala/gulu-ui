@@ -6,6 +6,10 @@ defineProps({
   },
   placeholder: {
     type: String
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 });
 defineEmits<{
@@ -17,6 +21,7 @@ defineEmits<{
   <input type="text"
          class="gulu-input"
          :value="modelValue"
+         :disabled="disabled"
          @input="$emit('update:modelValue',$event.target.value)"
          :placeholder="placeholder"
   />
@@ -40,6 +45,16 @@ defineEmits<{
   &:focus {
     border-color: $color-button-normal;
     outline: none;
+  }
+
+  &[disabled] {
+    color: darken($color-border, 20%);
+    background: $color-input-disabled;
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: $color-border;
+    }
   }
 
 }
