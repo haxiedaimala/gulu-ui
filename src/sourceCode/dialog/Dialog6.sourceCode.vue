@@ -1,7 +1,7 @@
 <sourceCode>
-常规使用
+支持 title
 <detail>
-  使用 <code>v-model</code> 双向绑定属性 <code>isVisible</code>，实现 <code>Dialog</code>的显示与关闭
+  使用 <code>title</code> 属性实现标题的自由书写，支持相关 <code>HTML</code>的标签的书写，实现自定义标题的内容与样式选择
 </detail>
 </sourceCode>
 
@@ -19,6 +19,9 @@ const toggleDialog = () => {
 <template>
   <Button @click="toggleDialog">toggle</Button>
   <Dialog v-model="isVisible">
+    <template #header>
+      <strong>加粗标题</strong>
+    </template>
     <div>content-1</div>
     <div>content-2</div>
   </Dialog>

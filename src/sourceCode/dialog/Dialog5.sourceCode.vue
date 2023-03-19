@@ -1,7 +1,8 @@
 <sourceCode>
-常规使用
+支持 hasButton
 <detail>
-  使用 <code>v-model</code> 双向绑定属性 <code>isVisible</code>，实现 <code>Dialog</code>的显示与关闭
+  <p>你可以使用<code>hasButton</code>属性来定义按钮是否存在。</p>
+  该属性接受一个<code>Boolean</code>类型的值。
 </detail>
 </sourceCode>
 
@@ -18,7 +19,10 @@ const toggleDialog = () => {
 
 <template>
   <Button @click="toggleDialog">toggle</Button>
-  <Dialog v-model="isVisible">
+  <Dialog v-model="isVisible" has-button>
+    <template #header>
+      <strong>加粗标题</strong>
+    </template>
     <div>content-1</div>
     <div>content-2</div>
   </Dialog>

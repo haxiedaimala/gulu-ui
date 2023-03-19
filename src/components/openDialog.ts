@@ -6,11 +6,12 @@ interface Options {
   content: string,
   clickCloseOverlay: boolean,
   ok: () => boolean | void,
-  cancle: () => boolean | void
+  cancle: () => boolean | void,
+  hasButton: boolean
 }
 
 export const openDialog = (options: Options) => {
-  const {title, content, clickCloseOverlay, ok, cancle} = options;
+  const {title, content, clickCloseOverlay, ok, cancle, hasButton} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
   const close = () => {
@@ -30,11 +31,12 @@ export const openDialog = (options: Options) => {
           },
           clickCloseOverlay,
           ok,
-          cancle
+          cancle,
+          hasButton
         },
         {
           header: title,
-          content
+          default: content
         });
     }
   });

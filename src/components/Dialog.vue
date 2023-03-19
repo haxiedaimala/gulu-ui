@@ -4,8 +4,9 @@ import Button from './Button.vue';
 const props = defineProps<{
   modelValue?: boolean,
   clickCloseOverlay?: boolean,
-  ok: () => boolean | void,
-  cancle: () => boolean | void
+  ok?: () => boolean | void,
+  cancle?: () => boolean | void,
+  hasButton: boolean
 }>();
 
 const emit = defineEmits<{
@@ -20,6 +21,7 @@ const onClickOverlay = () => {
   }
 };
 const onClickOk = () => {
+  if (!props.ok) closeDialog();
   if (props.ok && props.ok() !== false) {
     closeDialog();
   }
@@ -41,11 +43,11 @@ const onClickCancle = () => {
             <span @click="closeDialog" class="gulu-dialog-close"></span>
           </header>
           <main>
-            <slot name="content"/>
+            <slot/>
           </main>
-          <footer>
-            <Button level="main" @click="onClickOk">Ok</Button>
+          <footer v-if="hasButton">
             <Button @click="onClickCancle">Cancle</Button>
+            <Button level="primary" @click="onClickOk">Ok</Button>
           </footer>
         </div>
       </div>
@@ -91,7 +93,7 @@ $border-color: #d9d9d9;
   }
 
   > main {
-    padding: 12px 16px;
+    padding: 12px 16px 24px;
   }
 
   > footer {

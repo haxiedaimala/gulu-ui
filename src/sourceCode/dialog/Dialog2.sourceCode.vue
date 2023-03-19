@@ -1,4 +1,7 @@
-<sourceCode>一键打开 Dialog</sourceCode>
+<sourceCode>
+一键打开 Dialog
+<detail>使用 <code>openDialog</code>模块，引入 <code>Dialog</code>组件</detail>
+</sourceCode>
 
 <script setup lang="ts">
 import Button from '../../components/Button.vue';
@@ -10,6 +13,7 @@ const showDialog = () => {
     title: h('strong', {}, '标题'),
     content: 'content',
     clickCloseOverlay: false,
+    hasButton: true,
     ok() {
       alert('ok');
     },

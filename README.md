@@ -31,7 +31,11 @@ npm intsall gulu-ui-myself
 
 - `level`增加了更多属性值：`primary` `success` `info` `warning` `danger`
 
-3.
+3. `Dialog`组件
+
+- 修改 `ok` `cancle`事件属性的状态，改为可选状态，实现用户自由的选择与否
+- 修改内容 `content` 的具名插槽为默认 `slot`
+- 增加 `hasButton`属性，实现 `footer`底部的`ok` `cancle` 按钮的自由的选择与否
 
 ## 库文件打包步骤
 
