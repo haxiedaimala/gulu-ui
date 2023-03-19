@@ -69,10 +69,10 @@ watchPostEffect(() => {
            :placeholder="placeholder"
     />
     <span class="gulu-input-clear"
-          v-if="clearable && clear && modelValue.length>0"
+          v-if="type==='text'&&clearable && clear && modelValue.length>0"
           @click="clearValue"
     />
-    <span v-if="showPassword && showPwd && modelValue.length>0"
+    <span v-if="type==='password'&&showPassword && showPwd && modelValue.length>0"
           @click="toggelType"
           class="gulu-input-show-pwd">
       <svg aria-hidden="true">
