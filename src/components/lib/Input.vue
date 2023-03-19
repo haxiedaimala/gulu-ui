@@ -63,6 +63,11 @@ watchPostEffect(() => {
     };
   }
 });
+const messageTips = computed(() => {
+  if (props.error) return {type: 'error', value: props.error};
+  if (props.success) return {type: 'success', value: props.success};
+  return false;
+});
 </script>
 
 <template>
@@ -86,17 +91,11 @@ watchPostEffect(() => {
         <use :xlink:href="`#icon${name}show-pwd`"></use>
       </svg>
     </span>
-    <template v-if="error">
+    <template v-if="messageTips && messageTips.type">
       <svg class="gulu-input-icon" aria-hidden="true">
-        <use xlink:href="#icon-error"></use>
+        <use :xlink:href="`#icon-${messageTips.type}`"></use>
       </svg>
-      <span class="gulu-input-error-message">{{ error }}</span>
-    </template>
-    <template v-if="success">
-      <svg class="gulu-input-icon" aria-hidden="true">
-        <use xlink:href="#icon-success"></use>
-      </svg>
-      <span class="gulu-input-success-message">{{ success }}</span>
+      <span :class="`gulu-input-${messageTips.type}-message`">{{ messageTips.value }}</span>
     </template>
   </div>
 </template>
