@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watchPostEffect} from 'vue';
+import {computed, ref, watchPostEffect} from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -16,27 +16,52 @@ const props = defineProps({
   clearable: {
     type: Boolean,
     default: false
+  },
+  type: {
+    type: String,
+    default: 'text',
+    validator(value: string): boolean {
+      return ['text', 'password'].indexOf(value) >= 0;
+    }
+  },
+  showPassword: {
+    type: Boolean,
+    default: false
   }
 });
 const emits = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>();
 const clear = ref(props.clearable);
-const clearValue = () => emits('update:modelValue', '');
 const inputWrapper = ref<HTMLInputElement>();
+const inputType = ref(props.type);
+const showPwd = ref(props.showPassword);
+const name = computed(() => {
+  return inputType.value === 'password' ? '-un-' : '-';
+});
+const clearValue = () => emits('update:modelValue', '');
+const toggelType = () => {
+  inputType.value = inputType.value === 'text' ? 'password' : 'text';
+};
 watchPostEffect(() => {
-  if (!props.clearable) return;
+  if (!props.clearable && !props.showPassword) return;
   if (!inputWrapper.value) return;
   if (props.modelValue.length > 0) {
-    inputWrapper.value.onmouseenter = () => clear.value = true;
-    inputWrapper.value.onmouseleave = () => clear.value = false;
+    inputWrapper.value.onmouseenter = () => {
+      clear.value = true;
+      showPwd.value = true;
+    };
+    inputWrapper.value.onmouseleave = () => {
+      clear.value = false;
+      showPwd.value = false;
+    };
   }
 });
 </script>
 
 <template>
   <div class="gulu-input-wrapper" ref="inputWrapper">
-    <input type="text"
+    <input :type="inputType"
            class="gulu-input"
            :value="modelValue"
            :disabled="disabled"
@@ -44,9 +69,16 @@ watchPostEffect(() => {
            :placeholder="placeholder"
     />
     <span class="gulu-input-clear"
-          v-if="clear && modelValue.length>0"
+          v-if="clearable && clear && modelValue.length>0"
           @click="clearValue"
     />
+    <span v-if="showPassword && showPwd && modelValue.length>0"
+          @click="toggelType"
+          class="gulu-input-show-pwd">
+      <svg aria-hidden="true">
+        <use :xlink:href="`#icon${name}show-pwd`"></use>
+      </svg>
+    </span>
   </div>
 </template>
 
@@ -105,14 +137,23 @@ watchPostEffect(() => {
       transform: translate(-50%, -50%) rotate(45deg);
       width: 0.8px;
       height: 0.4em;
-      background-color: #d9d9d9;
+      background-color: $color-border;
     }
 
     &::after {
       transform: translate(-50%, -50%) rotate(135deg);
     }
   }
+
+  .gulu-input-show-pwd {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    position: absolute;
+    right: 8px;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+  }
 }
-
-
 </style>
