@@ -6,7 +6,7 @@ const props = defineProps<{
   clickCloseOverlay?: boolean,
   ok?: () => boolean | void,
   cancle?: () => boolean | void,
-  hasButton: boolean
+  hasButton?: boolean
 }>();
 
 const emit = defineEmits<{

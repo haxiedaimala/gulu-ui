@@ -5,6 +5,7 @@ import SwitchDemo from '../views/doc/Switch.vue';
 import ButtonDemo from '../views/doc/Button.vue';
 import DialogDemo from '../views/doc/Dialog.vue';
 import TabsDemo from '../views/doc/Tabs.vue';
+import Input from '../views/doc/Input.vue';
 import Markdown from '../components/Markdown.vue';
 import {h} from 'vue';
 import intro from '../markdown/intro.md';
@@ -47,6 +48,9 @@ export const router = createRouter({
         }, {
           path: 'tabs',
           component: TabsDemo
+        }, {
+          path: 'input',
+          component: Input
         }]
     }]
 });
