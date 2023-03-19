@@ -4,7 +4,7 @@
 </sourceCode>
 
 <script setup lang="ts">
-import Switch from '../../components/Switch.vue';
+import Switch from '../../components/lib/Switch.vue';
 import {ref} from 'vue';
 
 const checked1 = ref(true);

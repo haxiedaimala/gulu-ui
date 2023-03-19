@@ -41,7 +41,7 @@ watchPostEffect(() => {
 </template>
 
 <style lang="scss">
-@import "../assets/helper";
+@import "../../assets/helper";
 
 .gulu-switch {
   width: $height-normal-switch*2;

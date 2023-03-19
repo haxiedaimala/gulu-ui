@@ -6,8 +6,8 @@
 </sourceCode>
 
 <script setup lang="ts">
-import Dialog from '../../components/Dialog.vue';
-import Button from '../../components/Button.vue';
+import Dialog from '../../components/lib/Dialog.vue';
+import Button from '../../components/lib/Button.vue';
 import {ref} from 'vue';
 
 const isVisible = ref(false);

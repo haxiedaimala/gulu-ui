@@ -4,8 +4,8 @@
 </sourceCode>
 
 <script setup lang="ts">
-import Button from '../../components/Button.vue';
-import {openDialog} from '../../components/openDialog';
+import Button from '../../components/lib/Button.vue';
+import {openDialog} from '../../components/lib/openDialog';
 import {h} from 'vue';
 
 const showDialog = () => {

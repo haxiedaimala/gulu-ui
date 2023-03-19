@@ -26,7 +26,7 @@ const classes = computed(() => {
 </template>
 
 <style lang="scss">
-@import "../assets/helper";
+@import "../../assets/helper";
 
 $radius: 4px;
 $red: red;

@@ -44,15 +44,20 @@ import Topnav from '../components/Topnav.vue';
 </template>
 
 <style lang="scss" scoped>
-$color-green: #02bcb0;
+@import "../assets/helper";
+
 $border-radius: 4px;
-$color: #007974;
 .gulu-wrapper {
-  background: linear-gradient(145deg, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
+  background: linear-gradient(139deg, rgba(248, 152, 152, 1) 11%, rgba(231, 139, 161, 1) 27%, rgba(245, 108, 108, 1) 53%, rgba(245, 108, 108, 1) 71%, rgba(198, 112, 133, 1) 94%);
   clip-path: ellipse(80% 60% at 50% 40%);
 
+  :deep(.top-nav) {
+    box-shadow: none;
+    background-color: transparent;
+  }
+
   > .banner {
-    color: $color;
+    color: $color-text;
     padding: 100px 0;
     display: flex;
     flex-direction: column;
@@ -64,7 +69,7 @@ $color: #007974;
 
       a {
         margin: 0 8px;
-        background: $color-green;
+        background: $color-tab-slide;
         color: #fff;
         display: inline-block;
         border-radius: $border-radius;
@@ -106,6 +111,7 @@ $color: #007974;
       grid-template-areas: "icon title" "icon text";
       grid-template-columns: 80px auto;
       grid-template-rows: 1fr auto;
+      color: $color-text;
 
       > svg {
         grid-area: icon;

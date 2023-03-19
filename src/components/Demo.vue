@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from '../components/Button.vue';
+import Button from './lib/Button.vue';
 //@ts-ignore
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
