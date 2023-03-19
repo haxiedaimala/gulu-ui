@@ -37,7 +37,6 @@ npm intsall gulu-ui-myself
 - 修改内容 `content` 的具名插槽为默认 `slot`
 - 增加 `hasButton`属性，实现 `footer`底部的`ok` `cancle` 按钮的自由的选择与否
 
-## 库文件打包步骤
+4. `Tabs`组件
 
-1. 运行 yarn build:lib
-2. 得到的 dist/lib 目录就是编译后的库文件所在目录
+- 使用 `v-model`实现双向绑定

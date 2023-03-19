@@ -4,10 +4,10 @@ import {ref, useSlots, watchPostEffect} from 'vue';
 import Tab from './Tab.vue';
 
 defineProps({
-  selected: String
+  modelValue: String
 });
 const emit = defineEmits<{
-  (e: 'update:selected', value: string): void
+  (e: 'update:modelValue', value: string): void
 }>();
 const defaults = useSlots().default!();
 const titles = defaults.map(ele => ele.props?.title);
@@ -29,7 +29,7 @@ const toggleSelect = (title: string) => {
   if (disabled(title)) {
     return;
   }
-  emit('update:selected', title);
+  emit('update:modelValue', title);
 };
 watchPostEffect(() => {
   const {width, left: left1} = selectedItem.value!.getBoundingClientRect();
@@ -44,17 +44,17 @@ watchPostEffect(() => {
 <template>
   <div class="gulu-tabs">
     <div class="gulu-tabs-nav" ref="container">
-      <div class="gulu-tabs-nav-item" :class="{selected:title===selected,readOnly:disabled(title)}"
+      <div class="gulu-tabs-nav-item" :class="{selected:title===modelValue,readOnly:disabled(title)}"
            v-for="(title,index) in titles"
            :key="index"
-           @click="toggleSelect(title)" :ref="el=>{if(title===selected) selectedItem=el}">
+           @click="toggleSelect(title)" :ref="el=>{if(title===modelValue) selectedItem=el}">
         {{ title }}
       </div>
       <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="gulu-tabs-content">
       <template v-for="(c,index) in defaults" :key="index">
-        <component v-if="c.props!==null&&c.props.title===selected" class="gulu-tabs-content-item" :is="c"/>
+        <component v-if="c.props!==null&&c.props.title===modelValue" class="gulu-tabs-content-item" :is="c"/>
       </template>
     </div>
   </div>
