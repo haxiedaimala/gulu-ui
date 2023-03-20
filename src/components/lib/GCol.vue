@@ -53,12 +53,12 @@ const classStyle = computed(() => {
 @mixin span-offset-classes($class-prefix-span:gulu-col-span-,$class-prefix-offset:gulu-col-offset-) {
   @for $i from 1 through 24 {
     &.#{$class-prefix-span}#{$i} {
-      width: ($i / 24) * 100%;
+      width: calc(#{$i} / 24 * 100%) ;
     }
   }
   @for $i from 1 through 24 {
     &.#{$class-prefix-offset}#{$i} {
-      margin-left: ($i / 24) * 100%;
+      margin-left: calc(#{$i} / 24 * 100%) ;
     }
   }
 }

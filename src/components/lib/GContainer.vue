@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import GAside from './GAside.vue';
-import {ref, useSlots} from 'vue';
+import {computed, ref, useSlots} from 'vue';
 
 const hasAside = ref(false);
 const slots = useSlots().default!();
 slots.forEach(item => {
   if (item.type === GAside) hasAside.value = true;
 });
+const classStyle = computed(() => {
+  return {
+    [`gulu-container-hasAside`]: hasAside.value
+  };
+});
 </script>
 
 <template>
-  <div class="gulu-container" :class="{[`gulu-container-hasAside`]:hasAside}">
+  <div class="gulu-container" :class="classStyle">
     <slot/>
   </div>
 </template>
