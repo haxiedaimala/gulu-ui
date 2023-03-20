@@ -53,6 +53,8 @@ const classStyle = computed(() => {
 <style lang="scss">
 .gulu-layout-row {
   display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
   justify-content: flex-start;
 
   &.gulu-row-center {

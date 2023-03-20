@@ -5,6 +5,7 @@ import LayoutSourceCode2 from '../../sourceCode/layout/layout2.sourceCode.vue';
 import LayoutSourceCode3 from '../../sourceCode/layout/layout3.sourceCode.vue';
 import LayoutSourceCode4 from '../../sourceCode/layout/layout4.sourceCode.vue';
 import LayoutSourceCode5 from '../../sourceCode/layout/layout5.sourceCode.vue';
+import LayoutSourceCode6 from '../../sourceCode/layout/layout6.sourceCode.vue';
 </script>
 
 <template>
@@ -15,4 +16,5 @@ import LayoutSourceCode5 from '../../sourceCode/layout/layout5.sourceCode.vue';
   <Demo :component="LayoutSourceCode3"/>
   <Demo :component="LayoutSourceCode4"/>
   <Demo :component="LayoutSourceCode5"/>
+  <Demo :component="LayoutSourceCode6"/>
 </template>
