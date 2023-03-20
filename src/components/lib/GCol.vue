@@ -1,60 +1,28 @@
+<script lang="ts">
+const spanOffsetValidator = (value: number) => value >= 1 && value <= 24;
+const layoutValidator = (object: { span?: string, offset?: string }) => {
+  let valida = true;
+  Object.keys(object).forEach(key => {
+    if (['span', 'offset'].indexOf(key) === -1) valida = false;
+  });
+  Object.values(object).forEach(value => {
+    if (parseInt(value) < 0 || parseInt(value) > 24) valida = false;
+  });
+  return valida;
+};
+export default {};
+</script>
 <script setup lang="ts">
 import {computed} from 'vue';
 
 const props = defineProps({
-  span: {
-    type: Number,
-    validator: (value: number) => value >= 1 && value <= 24
-  },
-  offset: {
-    type: Number,
-    validator: (value: number) => value >= 1 && value <= 24
-  },
-  xs: {
-    type: Object,
-    validator: (value: { span?: string, offset?: string }) => {
-      Object.keys(value).forEach(key => {
-        if (['span', 'offset'].indexOf(key) < 0) return false;
-      });
-      return true;
-    }
-  },
-  sm: {
-    type: Object,
-    validator: (value: { span?: string, offset?: string }) => {
-      Object.keys(value).forEach(key => {
-        if (['span', 'offset'].indexOf(key) < 0) return false;
-      });
-      return true;
-    }
-  },
-  md: {
-    type: Object,
-    validator: (value: { span?: string, offset?: string }) => {
-      Object.keys(value).forEach(key => {
-        if (['span', 'offset'].indexOf(key) < 0) return false;
-      });
-      return true;
-    }
-  },
-  lg: {
-    type: Object,
-    validator: (value: { span?: string, offset?: string }) => {
-      Object.keys(value).forEach(key => {
-        if (['span', 'offset'].indexOf(key) < 0) return false;
-      });
-      return true;
-    }
-  },
-  xl: {
-    type: Object,
-    validator: (value: { span?: string, offset?: string }) => {
-      Object.keys(value).forEach(key => {
-        if (['span', 'offset'].indexOf(key) < 0) return false;
-      });
-      return true;
-    }
-  }
+  span: {type: Number, validator: spanOffsetValidator},
+  offset: {type: Number, validator: spanOffsetValidator},
+  xs: {type: Object, validator: layoutValidator},
+  sm: {type: Object, validator: layoutValidator},
+  md: {type: Object, validator: layoutValidator},
+  lg: {type: Object, validator: layoutValidator},
+  xl: {type: Object, validator: layoutValidator}
 });
 const classStyle = computed(() => {
   return {
