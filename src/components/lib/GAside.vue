@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  <div>aside</div>
+  <div class="gulu-container-aside">
+    <slot/>
+  </div>
 </template>
 
 <style lang="scss">

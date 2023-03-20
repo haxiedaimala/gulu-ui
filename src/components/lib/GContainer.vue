@@ -2,8 +2,14 @@
 </script>
 
 <template>
-  <div>container</div>
+  <div class="gulu-container">
+    <slot/>
+  </div>
 </template>
 
 <style lang="scss">
+.gulu-container {
+  display: flex;
+  flex-direction: column;
+}
 </style>
