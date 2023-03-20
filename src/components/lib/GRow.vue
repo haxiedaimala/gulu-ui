@@ -32,8 +32,9 @@ onMounted(() => {
   if (props.gutter < 0) return;
   const cloList = rowItem.value!.children;
   const length = cloList.length || 0;
-  for (let i = 0; i < length - 1; i++) {
-    (cloList[i] as HTMLDivElement).style.marginRight = props.gutter + 'px';
+  for (let i = 0; i < length; i++) {
+    (cloList[i] as HTMLDivElement).style.paddingLeft = props.gutter / 2 + 'px';
+    (cloList[i] as HTMLDivElement).style.paddingRight = props.gutter / 2 + 'px';
   }
 });
 
@@ -54,7 +55,6 @@ const classStyle = computed(() => {
 .gulu-layout-row {
   display: flex;
   flex-wrap: wrap;
-  box-sizing: border-box;
   justify-content: flex-start;
 
   &.gulu-row-center {
@@ -62,7 +62,7 @@ const classStyle = computed(() => {
   }
 
   &.gulu-row-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   &.gulu-row-space-between {

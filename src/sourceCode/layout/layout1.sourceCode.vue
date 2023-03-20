@@ -14,11 +14,11 @@ import GCol from '../../components/lib/GCol.vue';
 
 <template>
   <g-row>
-    <g-col><div class="grid-content gird-bg"/></g-col>
+    <g-col :span="24"><div class="grid-content gird-bg"/></g-col>
   </g-row>
   <g-row>
-    <g-col><div class="grid-content gird-bg"/></g-col>
-    <g-col><div class="grid-content grid-bg-light"/></g-col>
+    <g-col :span="12"><div class="grid-content gird-bg"/></g-col>
+    <g-col :span="12"><div class="grid-content grid-bg-light"/></g-col>
   </g-row>
   <g-row>
     <g-col :span="8"><div class="grid-content grid-bg-light"/></g-col>

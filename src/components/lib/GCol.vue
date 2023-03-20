@@ -64,7 +64,7 @@ const classStyle = computed(() => {
 }
 
 .gulu-layout-col {
-  width: 100%;
+  max-width: 100%;
 
   @include span-offset-classes(gulu-col-span-, gulu-col-offset-);
   @include span-offset-classes(gulu-col-xs-span-, gulu-col-xs-offset-);
