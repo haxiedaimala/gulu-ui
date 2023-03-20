@@ -12,16 +12,16 @@ import GCol from '../../components/lib/GCol.vue';
 
 <template>
   <g-row>
-    <g-col :span="6" :xs="{'span':8}" :md="{'span':4}" :lg="{'span':3}" :xl="{'span':1}">
+    <g-col :xs="{span:8}" :md="{span:4}" :lg="{span:3}" :xl="{span:1}">
       <div class="grid-content gird-bg"/>
     </g-col>
-    <g-col :span="6" :xs="{'span':4}" :md="{'span':8}" :lg="{'span':9}" :xl="{'span':11}">
+    <g-col :xs="{span:4}" :md="{span:8}" :lg="{span:9}" :xl="{span:11}">
       <div class="grid-content grid-bg-light"/>
     </g-col>
-    <g-col :span="6" :xs="{'span':4}" :md="{'span':8}" :lg="{'span':9}" :xl="{'span':11}">
+    <g-col :xs="{span:4}" :md="{span:8}" :lg="{span:9}" :xl="{span:11}">
       <div class="grid-content gird-bg"/>
     </g-col>
-    <g-col :span="6" :xs="{'span':8}" :md="{'span':4}" :lg="{'span':3}" :xl="{'span':1}">
+    <g-col :xs="{span:8}" :md="{span:4}" :lg="{span:3}" :xl="{span:1}">
       <div class="grid-content grid-bg-light"/>
     </g-col>
   </g-row>

@@ -97,21 +97,20 @@ const classStyle = computed(() => {
     }
   }
 
-  @media (max-width: 768px) {
-    $class-prefix: gulu-col-xs-span-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        width: ($i / 24) * 100%;
-      }
-    }
-    $class-prefix: gulu-col-xs-offset-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        margin-left: ($i / 24) * 100%;
-      }
+  $class-prefix: gulu-col-xs-span-;
+  @for $i from 1 through 24 {
+    &.#{$class-prefix}#{$i} {
+      width: ($i / 24) * 100%;
     }
   }
-  @media (min-width: 769px) and (max-width: 992px) {
+  $class-prefix: gulu-col-xs-offset-;
+  @for $i from 1 through 24 {
+    &.#{$class-prefix}#{$i} {
+      margin-left: ($i / 24) * 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
     $class-prefix: gulu-col-sm-span-;
     @for $i from 1 through 24 {
       &.#{$class-prefix}#{$i} {
@@ -125,7 +124,7 @@ const classStyle = computed(() => {
       }
     }
   }
-  @media (min-width: 993px) and (max-width: 1200px) {
+  @media (min-width: 992px) {
     $class-prefix: gulu-col-md-span-;
     @for $i from 1 through 24 {
       &.#{$class-prefix}#{$i} {
@@ -139,7 +138,7 @@ const classStyle = computed(() => {
       }
     }
   }
-  @media (min-width: 1201px) and (max-width: 1920px) {
+  @media (min-width: 1200px) {
     $class-prefix: gulu-col-lg-span-;
     @for $i from 1 through 24 {
       &.#{$class-prefix}#{$i} {
@@ -153,7 +152,7 @@ const classStyle = computed(() => {
       }
     }
   }
-  @media (min-width: 1921px) {
+  @media (min-width: 1920px) {
     $class-prefix: gulu-col-xl-span-;
     @for $i from 1 through 24 {
       &.#{$class-prefix}#{$i} {
