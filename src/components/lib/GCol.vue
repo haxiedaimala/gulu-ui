@@ -49,90 +49,36 @@ const classStyle = computed(() => {
 </template>
 
 <style lang="scss">
+@mixin span-offset-classes($class-prefix-span:gulu-layout-col-span-,$class-prefix-offset:gulu-layout-col-offset-) {
+  @for $i from 1 through 24 {
+    &.#{$class-prefix-span}#{$i} {
+      width: ($i / 24) * 100%;
+    }
+  }
+  @for $i from 1 through 24 {
+    &.#{$class-prefix-offset}#{$i} {
+      margin-left: ($i / 24) * 100%;
+    }
+  }
+}
+
 .gulu-layout-col {
   width: 100%;
 
-  $class-prefix: gulu-layout-col-span-;
-  @for $i from 1 through 24 {
-    &.#{$class-prefix}#{$i} {
-      width: ($i / 24) * 100%;
-    }
-  }
-  $class-prefix: gulu-layout-col-offset-;
-  @for $i from 1 through 24 {
-    &.#{$class-prefix}#{$i} {
-      margin-left: ($i / 24) * 100%;
-    }
-  }
-
-  $class-prefix: gulu-col-xs-span-;
-  @for $i from 1 through 24 {
-    &.#{$class-prefix}#{$i} {
-      width: ($i / 24) * 100%;
-    }
-  }
-  $class-prefix: gulu-col-xs-offset-;
-  @for $i from 1 through 24 {
-    &.#{$class-prefix}#{$i} {
-      margin-left: ($i / 24) * 100%;
-    }
-  }
+  @include span-offset-classes(gulu-layout-col-span-, gulu-layout-col-offset-);
+  @include span-offset-classes(gulu-col-xs-span-, gulu-col-xs-offset-);
 
   @media (min-width: 768px) {
-    $class-prefix: gulu-col-sm-span-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        width: ($i / 24) * 100%;
-      }
-    }
-    $class-prefix: gulu-col-sm-offset-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        margin-left: ($i / 24) * 100%;
-      }
-    }
+    @include span-offset-classes(gulu-col-sm-span-, gulu-col-sm-offset-);
   }
   @media (min-width: 992px) {
-    $class-prefix: gulu-col-md-span-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        width: ($i / 24) * 100%;
-      }
-    }
-    $class-prefix: gulu-col-md-offset-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        margin-left: ($i / 24) * 100%;
-      }
-    }
+    @include span-offset-classes(gulu-col-md-span-, gulu-col-md-offset-);
   }
   @media (min-width: 1200px) {
-    $class-prefix: gulu-col-lg-span-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        width: ($i / 24) * 100%;
-      }
-    }
-    $class-prefix: gulu-col-lg-offset-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        margin-left: ($i / 24) * 100%;
-      }
-    }
+    @include span-offset-classes(gulu-col-lg-span-, gulu-col-lg-offset-);
   }
   @media (min-width: 1920px) {
-    $class-prefix: gulu-col-xl-span-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        width: ($i / 24) * 100%;
-      }
-    }
-    $class-prefix: gulu-col-xl-offset-;
-    @for $i from 1 through 24 {
-      &.#{$class-prefix}#{$i} {
-        margin-left: ($i / 24) * 100%;
-      }
-    }
+    @include span-offset-classes(gulu-col-xl-span-, gulu-col-xl-offset-);
   }
 }
 </style>
