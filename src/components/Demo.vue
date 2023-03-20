@@ -51,7 +51,7 @@ $border-color: #d9d9d9;
     }
 
     .detail {
-      font-size: 16px;
+      font-size: 18px;
       padding: 8px 0;
       line-height: 1.7;
 

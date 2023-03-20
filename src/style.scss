@@ -39,6 +39,13 @@ body {
   overflow: hidden;
 }
 
-.gulu-doc-detail{
+.gulu-doc-detail {
+  font-size: 18px;
   padding: 1em 0;
+
+  p {
+    font-size: inherit;
+    line-height: 1.7;
+    margin: 1rem 0;
+  }
 }
