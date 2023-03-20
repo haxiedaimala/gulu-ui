@@ -15,7 +15,7 @@ export default {};
 <script setup lang="ts">
 import {computed} from 'vue';
 
-const props = defineProps({
+const {span, offset, xs, sm, md, lg, xl} = defineProps({
   span: {type: Number, validator: spanOffsetValidator},
   offset: {type: Number, validator: spanOffsetValidator},
   xs: {type: Object, validator: layoutValidator},
@@ -24,21 +24,22 @@ const props = defineProps({
   lg: {type: Object, validator: layoutValidator},
   xl: {type: Object, validator: layoutValidator}
 });
+const createClass = (obj: any, str: string = ''): string[] => {
+  if (!obj) return [];
+  let array = [];
+  if (obj.span) array.push(`gulu-col-${str}span-${obj.span}`);
+  if (obj.offset) array.push(`gulu-col-${str}offset-${obj.offset}`);
+  return array;
+};
 const classStyle = computed(() => {
-  return {
-    [`gulu-layout-col-span-${props.span}`]: props.span,
-    [`gulu-layout-col-offset-${props.offset}`]: props.offset,
-    [`gulu-col-xs-span-${props.xs?.span}`]: props.xs && props.xs.span,
-    [`gulu-col-xs-offset-${props.xs?.offset}`]: props.xs && props.xs.offset,
-    [`gulu-col-md-span-${props.md?.span}`]: props.md && props.md.span,
-    [`gulu-col-md-offset-${props.md?.offset}`]: props.md && props.md.offset,
-    [`gulu-col-sm-span-${props.sm?.span}`]: props.sm && props.sm.span,
-    [`gulu-col-sm-offset-${props.sm?.offset}`]: props.sm && props.sm.offset,
-    [`gulu-col-lg-span-${props.lg?.span}`]: props.lg && props.lg.span,
-    [`gulu-col-lg-offset-${props.lg?.offset}`]: props.lg && props.lg.offset,
-    [`gulu-col-xl-span-${props.xl?.span}`]: props.xl && props.xl.span,
-    [`gulu-col-xl-offset-${props.xl?.offset}`]: props.xl && props.xl.offset,
-  };
+  return [
+    ...createClass({span, offset}),
+    ...createClass(xs, 'xs-'),
+    ...createClass(sm, 'sm-'),
+    ...createClass(md, 'md-'),
+    ...createClass(lg, 'lg-'),
+    ...createClass(xl, 'xl-'),
+  ];
 });
 </script>
 
@@ -49,7 +50,7 @@ const classStyle = computed(() => {
 </template>
 
 <style lang="scss">
-@mixin span-offset-classes($class-prefix-span:gulu-layout-col-span-,$class-prefix-offset:gulu-layout-col-offset-) {
+@mixin span-offset-classes($class-prefix-span:gulu-col-span-,$class-prefix-offset:gulu-col-offset-) {
   @for $i from 1 through 24 {
     &.#{$class-prefix-span}#{$i} {
       width: ($i / 24) * 100%;
@@ -65,7 +66,7 @@ const classStyle = computed(() => {
 .gulu-layout-col {
   width: 100%;
 
-  @include span-offset-classes(gulu-layout-col-span-, gulu-layout-col-offset-);
+  @include span-offset-classes(gulu-col-span-, gulu-col-offset-);
   @include span-offset-classes(gulu-col-xs-span-, gulu-col-xs-offset-);
 
   @media (min-width: 768px) {
