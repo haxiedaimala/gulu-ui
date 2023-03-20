@@ -8,4 +8,7 @@
 </template>
 
 <style lang="scss">
+.gulu-container-aside{
+  flex-shrink: 0;
+}
 </style>

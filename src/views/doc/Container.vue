@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ContainerSourceCode1 from '../../sourceCode/container/container1.sourceCode.vue';
+import ContainerSourceCode2 from '../../sourceCode/container/container2.sourceCode.vue';
 import Demo from '../../components/Demo.vue';
 </script>
 
@@ -14,4 +15,5 @@ import Demo from '../../components/Demo.vue';
     <p>&lt;g-footer&gt;：底栏容器。</p>
   </div>
   <Demo :component="ContainerSourceCode1"/>
+  <Demo :component="ContainerSourceCode2"/>
 </template>
