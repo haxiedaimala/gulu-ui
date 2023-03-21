@@ -19,8 +19,8 @@ const hideCodeVisible = () => codeVisible.value = false;
 
 <template>
   <div class="switch-wrapper">
-    <h2>{{ component.__sourceCodeTitle }}</h2>
-    <div class="detail" v-html="component.__sourceCodeDetail"></div>
+    <h2 v-if="component.__sourceCodeTitle">{{ component.__sourceCodeTitle }}</h2>
+    <div class="detail" v-if="component.__sourceCodeDetail" v-html="component.__sourceCodeDetail"></div>
     <div class="switch">
       <div class="switch-component">
         <component :is="component"/>
