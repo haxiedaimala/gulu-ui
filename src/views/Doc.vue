@@ -81,12 +81,17 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
       position: fixed;
       top: 0;
       left: 0;
-      padding: 80px 0 16px;
+      padding: 80px 0 2em;
       height: 100%;
       width: 285px;
       z-index: $index-aside;
       box-shadow: $box-shadow-aside;
       background: #fff;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none
+      }
 
       > h2 {
         margin: 16px 4px;
