@@ -1,12 +1,16 @@
 <sourceCode>常见页面布局</sourceCode>
 
 <script setup lang="ts">
-import Toast from '../../components/lib/Toast.vue';
+import Button from '../../components/lib/Button.vue';
+import {openToast} from '../../components/lib/openToast';
+
+const showToast = () => {
+  openToast({
+    message: 'hello'
+  });
+};
 </script>
 
 <template>
-<Toast>152</Toast>
+  <Button @click="showToast">show Toast</Button>
 </template>
-
-<style lang="scss">
-</style>
