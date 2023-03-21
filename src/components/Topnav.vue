@@ -76,7 +76,7 @@ const toggleAside = () => {
     transform: translateY(-50%);
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: $width) {
     > .menu {
       display: none
     }

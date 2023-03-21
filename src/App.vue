@@ -3,10 +3,10 @@ import {provide, ref} from 'vue';
 import {router} from './router';
 
 const width = document.documentElement.clientWidth;
-const asideVisible = ref(width > 500);
+const asideVisible = ref(width > 960);
 provide('asideVisible', asideVisible);
 router.afterEach(() => {
-  if (width <= 500) {
+  if (width <= 960) {
     asideVisible.value = false;
   }
 });

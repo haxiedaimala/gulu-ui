@@ -71,7 +71,7 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
     flex-grow: 1;
     padding-top: 60px;
     padding-left: 300px;
-    @media (max-width: 500px) {
+    @media (max-width: $width) {
       padding-left: 0;
     }
     display: flex;

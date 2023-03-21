@@ -11,7 +11,7 @@ $color-button-warning: #e6a23c;
 $color-button-danger: #f56c6c;
 $color-font: #333;
 $color-border: #d9d9d9;
-$color-input-disabled:#f5f7fa;
+$color-input-disabled: #f5f7fa;
 $box-shadow-nav: 0 3px 3px rgba(51, 51, 51, .1);
 $box-shadow-aside: 3px 0 3px rgba(51, 51, 51, .1);
 
@@ -25,6 +25,9 @@ $height-large-switch-span: $height-large-switch - 4px;
 $height-small-switch: 18px;
 $height-small-switch-span: $height-small-switch - 4px;
 $height-button: 32px;
+
+$width: 960px;
+
 %code {
   font-family: 'JetBrains Mono', "Source Code Pro", Menlo, Monaco, Consolas, 'Courier New', monospace;
   line-height: 1.4;
