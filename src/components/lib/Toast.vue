@@ -11,6 +11,10 @@ const props = defineProps({
   modelValue: {
     type: Boolean,
     default: false
+  },
+  showClose: {
+    type: Boolean,
+    default: false
   }
 });
 const emits = defineEmits<{
@@ -27,6 +31,7 @@ if (props.autoClose) {
 <template>
   <div class="gulu-toast" v-if="modelValue">
     <slot/>
+    <div class="gulu-toast-close" v-if="showClose" @click="close"></div>
   </div>
 </template>
 
@@ -48,5 +53,32 @@ if (props.autoClose) {
   border: 1px solid $color-button-info;
   color: $color-button-info;
   border-radius: 4px;
+
+  &-close {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+
+    &::after,
+    &::before {
+      content: '';
+      width: 1px;
+      height: 0.8em;
+      background-color: $color-button-info;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(135deg);
+    }
+  }
 }
 </style>
