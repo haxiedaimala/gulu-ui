@@ -9,7 +9,7 @@ type Options = {
   showClose?: boolean
 }
 export const openToast = (options: Options) => {
-  const {message, autoClose = true, autoCloseDelay = 3, showClose = false,modelValue=true} = options;
+  const {message, autoClose = true, autoCloseDelay = 3, showClose = false, modelValue = true} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
   const app = createApp({
@@ -29,7 +29,7 @@ export const openToast = (options: Options) => {
           showClose
         },
         {
-          default: message
+          default: () => message
         }
       );
     }
