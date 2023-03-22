@@ -6,7 +6,9 @@ import {openToast} from '../../components/lib/openToast';
 
 const showToast = () => {
   openToast({
-    message: 'hello'
+    message: 'hello',
+    autoClose:true,
+    autoCloseDelay:5
   });
 };
 </script>

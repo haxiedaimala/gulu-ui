@@ -1,8 +1,31 @@
 <script setup lang="ts">
+const props = defineProps({
+  autoClose: {
+    type: Boolean,
+    default: true,
+  },
+  autoCloseDelay: {
+    type: Number,
+    default: 3
+  },
+  modelValue: {
+    type: Boolean,
+    default: false
+  }
+});
+const emits = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+}>();
+const close = () => emits('update:modelValue', false);
+if (props.autoClose) {
+  setTimeout(() => {
+    close();
+  }, props.autoCloseDelay * 1000);
+}
 </script>
 
 <template>
-  <div class="gulu-toast">
+  <div class="gulu-toast" v-if="modelValue">
     <slot/>
   </div>
 </template>
