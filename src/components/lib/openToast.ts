@@ -11,6 +11,9 @@ type Options = {
   enableHtml?: boolean,
   position?: 'top' | 'bottom' | 'center',
 }
+const toastWrapper = document.createElement('div');
+toastWrapper.setAttribute('id', 'gulu-toast-wrapper');
+document.documentElement.appendChild(toastWrapper);
 export const openToast = (options: Options) => {
   const {
     message,
@@ -23,7 +26,7 @@ export const openToast = (options: Options) => {
     position = 'top',
   } = options;
   const div = document.createElement('div');
-  document.body.appendChild(div);
+  toastWrapper.appendChild(div);
   const app = createApp({
     render() {
       return h(
@@ -49,6 +52,9 @@ export const openToast = (options: Options) => {
       );
     }
   });
+  if (toastWrapper.children.length > 1) {
+    toastWrapper.children[0].remove();
+  }
   app.mount(div);
 };
 
