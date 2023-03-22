@@ -46,7 +46,7 @@ const slotContent = computed(() => useSlots().default!()[0].children);
 const classStyle = computed(() => {
   return [
     `gulu-toast-${props.type}`,
-    `gulu-toast-${props.position}`
+    `gulu-toast-${props.position}`,
   ];
 });
 </script>
@@ -74,6 +74,39 @@ const classStyle = computed(() => {
   background-color: lighten($typeColor, $num);
 }
 
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .gulu-toast {
   position: fixed;
   z-index: $index-toast;
@@ -87,19 +120,22 @@ const classStyle = computed(() => {
   &.gulu-toast-top {
     top: 20px;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
+    animation: 250ms slide-up;
   }
 
   &.gulu-toast-bottom {
     bottom: 20px;
     left: 50%;
     transform: translate(-50%, 0);
+    animation: 250ms slide-down;
   }
 
   &.gulu-toast-center {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    animation: 250ms fade;
   }
 
   &.gulu-toast-info {
