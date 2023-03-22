@@ -6,10 +6,11 @@ type Options = {
   autoClose?: boolean,
   autoCloseDelay?: number,
   modelValue?: boolean,
-  showClose?: boolean
+  showClose?: boolean,
+  type?: 'success' | 'warning' | 'info' | 'error'
 }
 export const openToast = (options: Options) => {
-  const {message, autoClose = true, autoCloseDelay = 3, showClose = false, modelValue = true} = options;
+  const {message, autoClose = true, autoCloseDelay = 3, showClose = false, modelValue = true, type = 'info'} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
   const app = createApp({
@@ -26,7 +27,8 @@ export const openToast = (options: Options) => {
               div.remove();
             }
           },
-          showClose
+          showClose,
+          type
         },
         {
           default: () => message

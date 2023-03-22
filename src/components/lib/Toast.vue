@@ -15,6 +15,11 @@ const props = defineProps({
   showClose: {
     type: Boolean,
     default: false
+  },
+  type: {
+    type: String,
+    default: 'info',
+    validator: (value: string) => ['success', 'warning', 'info', 'error'].indexOf(value) >= 0
   }
 });
 const emits = defineEmits<{
@@ -29,7 +34,8 @@ if (props.autoClose) {
 </script>
 
 <template>
-  <div class="gulu-toast" v-if="modelValue">
+  <div class="gulu-toast" :class="`gulu-toast-${type}`" v-if="modelValue">
+    <i class="gulu-iconfont gulu-toast-icon" :class="`g-${type}`"></i>
     <slot/>
     <div class="gulu-toast-close" v-if="showClose" @click="close"></div>
   </div>
@@ -37,6 +43,13 @@ if (props.autoClose) {
 
 <style lang="scss">
 @import "../../assets/helper";
+@import "iconfont";
+
+@mixin toastType($typeColor:$color-button-info,$num:38) {
+  border: 1px solid $typeColor;
+  color: $typeColor;
+  background-color: lighten($typeColor, $num);
+}
 
 .gulu-toast {
   position: fixed;
@@ -46,13 +59,32 @@ if (props.autoClose) {
   transform: translate(-50%, 0);
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   padding: 0.3em 1em;
-  background-color: #f4f4f5;
-  border: 1px solid $color-button-info;
-  color: $color-button-info;
   border-radius: 4px;
+
+
+  &.gulu-toast-info {
+    @include toastType($color-button-info);
+  }
+
+  &.gulu-toast-success {
+    @include toastType($color-button-success);
+  }
+
+  &.gulu-toast-warning {
+    @include toastType($color-button-warning);
+  }
+
+  &.gulu-toast-error {
+    @include toastType($color-button-danger, 28);
+  }
+
+
+  &-icon {
+    margin-right: 0.5em;
+  }
 
   &-close {
     position: relative;
@@ -80,5 +112,6 @@ if (props.autoClose) {
       transform: translate(-50%, -50%) rotate(135deg);
     }
   }
+
 }
 </style>

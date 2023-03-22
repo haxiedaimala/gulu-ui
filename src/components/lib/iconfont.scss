@@ -1,0 +1,48 @@
+@import "../../assets/helper";
+
+@font-face {
+  font-family: "gulu-iconfont"; /* Project id 3968420 */
+  src: url('./font.woff2') format('woff2'),
+  url('./font2.woff') format('woff'),
+  url('./font3.ttf') format('truetype');
+}
+
+.gulu-iconfont {
+  font-family: "gulu-iconfont" !important;
+  font-size: inherit;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.g-info:before {
+  content: "\e67d";
+}
+
+.g-warning:before {
+  content: "\e848";
+}
+
+.g-success:before {
+  content: "\e68b";
+}
+
+.g-error:before {
+  content: "\e839";
+}
+
+.g-info {
+  color: $color-button-info;
+}
+
+.g-success {
+  color: $color-button-success;
+}
+
+.g-error {
+  color: $color-button-danger
+}
+
+.g-warning {
+  color: $color-button-warning;
+}

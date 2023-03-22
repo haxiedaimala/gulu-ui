@@ -2,6 +2,7 @@
 import ToastSourceCode1 from '../../sourceCode/toast/toast1.sourceCode.vue';
 import ToastSourceCode2 from '../../sourceCode/toast/toast2.sourceCode.vue';
 import ToastSourceCode3 from '../../sourceCode/toast/toast3.sourceCode.vue';
+import ToastSourceCode4 from '../../sourceCode/toast/toast4.sourceCode.vue';
 import Demo from '../../components/Demo.vue';
 </script>
 
@@ -11,4 +12,5 @@ import Demo from '../../components/Demo.vue';
   <Demo :component="ToastSourceCode1"/>
   <Demo :component="ToastSourceCode2"/>
   <Demo :component="ToastSourceCode3"/>
+  <Demo :component="ToastSourceCode4"/>
 </template>
