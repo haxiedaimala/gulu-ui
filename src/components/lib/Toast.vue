@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {computed, useSlots} from 'vue';
+
 const props = defineProps({
   autoClose: {
     type: Boolean,
@@ -20,6 +22,10 @@ const props = defineProps({
     type: String,
     default: 'info',
     validator: (value: string) => ['success', 'warning', 'info', 'error'].indexOf(value) >= 0
+  },
+  enableHtml: {
+    type: Boolean,
+    default: false
   }
 });
 const emits = defineEmits<{
@@ -31,12 +37,18 @@ if (props.autoClose) {
     close();
   }, props.autoCloseDelay * 1000);
 }
+const slotContent = computed(() => useSlots().default!()[0].children);
 </script>
 
 <template>
   <div class="gulu-toast" :class="`gulu-toast-${type}`" v-if="modelValue">
     <i class="gulu-iconfont gulu-toast-icon" :class="`g-${type}`"></i>
-    <slot/>
+    <template v-if="enableHtml">
+      <div v-html="slotContent"/>
+    </template>
+    <template v-else>
+      <slot/>
+    </template>
     <div class="gulu-toast-close" v-if="showClose" @click="close"></div>
   </div>
 </template>

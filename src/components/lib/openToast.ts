@@ -7,10 +7,19 @@ type Options = {
   autoCloseDelay?: number,
   modelValue?: boolean,
   showClose?: boolean,
-  type?: 'success' | 'warning' | 'info' | 'error'
+  type?: 'success' | 'warning' | 'info' | 'error',
+  enableHtml?: boolean,
 }
 export const openToast = (options: Options) => {
-  const {message, autoClose = true, autoCloseDelay = 3, showClose = false, modelValue = true, type = 'info'} = options;
+  const {
+    message,
+    autoClose = true,
+    autoCloseDelay = 3,
+    showClose = false,
+    modelValue = true,
+    type = 'info',
+    enableHtml = false
+  } = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
   const app = createApp({
@@ -28,7 +37,8 @@ export const openToast = (options: Options) => {
             }
           },
           showClose,
-          type
+          type,
+          enableHtml,
         },
         {
           default: () => message
