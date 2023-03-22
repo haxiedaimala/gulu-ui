@@ -26,6 +26,11 @@ const props = defineProps({
   enableHtml: {
     type: Boolean,
     default: false
+  },
+  position: {
+    type: String,
+    default: 'top',
+    validator: (value: string) => ['top', 'center', 'bottom'].indexOf(value) >= 0
   }
 });
 const emits = defineEmits<{
@@ -38,10 +43,16 @@ if (props.autoClose) {
   }, props.autoCloseDelay * 1000);
 }
 const slotContent = computed(() => useSlots().default!()[0].children);
+const classStyle = computed(() => {
+  return [
+    `gulu-toast-${props.type}`,
+    `gulu-toast-${props.position}`
+  ];
+});
 </script>
 
 <template>
-  <div class="gulu-toast" :class="`gulu-toast-${type}`" v-if="modelValue">
+  <div class="gulu-toast" :class="classStyle" v-if="modelValue">
     <i class="gulu-iconfont gulu-toast-icon" :class="`g-${type}`"></i>
     <template v-if="enableHtml">
       <div v-html="slotContent"/>
@@ -65,10 +76,7 @@ const slotContent = computed(() => useSlots().default!()[0].children);
 
 .gulu-toast {
   position: fixed;
-  top: 20px;
-  left: 50%;
   z-index: $index-toast;
-  transform: translate(-50%, 0);
   display: flex;
   align-items: center;
   font-size: 16px;
@@ -76,6 +84,23 @@ const slotContent = computed(() => useSlots().default!()[0].children);
   padding: 0.3em 1em;
   border-radius: 4px;
 
+  &.gulu-toast-top {
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  &.gulu-toast-bottom {
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  &.gulu-toast-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   &.gulu-toast-info {
     @include toastType($color-button-info);

@@ -9,6 +9,7 @@ type Options = {
   showClose?: boolean,
   type?: 'success' | 'warning' | 'info' | 'error',
   enableHtml?: boolean,
+  position?: 'top' | 'bottom' | 'center',
 }
 export const openToast = (options: Options) => {
   const {
@@ -18,7 +19,8 @@ export const openToast = (options: Options) => {
     showClose = false,
     modelValue = true,
     type = 'info',
-    enableHtml = false
+    enableHtml = false,
+    position = 'top',
   } = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
@@ -39,6 +41,7 @@ export const openToast = (options: Options) => {
           showClose,
           type,
           enableHtml,
+          position,
         },
         {
           default: () => message
