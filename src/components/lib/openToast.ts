@@ -3,12 +3,12 @@ import {createApp, h} from 'vue';
 
 type Options = {
   message: string;
-  autoClose: boolean,
-  autoCloseDelay: number,
+  autoClose?: boolean,
+  autoCloseDelay?: number,
   modelValue?: boolean
 }
 export const openToast = (options: Options) => {
-  const {message, autoClose, autoCloseDelay} = options;
+  const {message, autoClose=true, autoCloseDelay=3} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
   const app = createApp({
