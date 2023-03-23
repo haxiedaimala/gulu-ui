@@ -12,7 +12,9 @@ const trigger = ref<HTMLDivElement>();
 const eventHandler = (e: Event) => {
   if (popover.value?.contains(e.target as HTMLElement)) return;
   if (trigger.value?.contains(e.target as HTMLElement)) return;
+  console.log('document close');
   visible.value = false;
+  console.log('移除监听');
   document.removeEventListener('click', eventHandler);
 };
 const positionContent = () => {
@@ -23,6 +25,7 @@ const positionContent = () => {
 const open = () => {
   nextTick(() => {
     positionContent();
+    console.log('增加监听');
     document.addEventListener('click', eventHandler);
   });
 };
@@ -30,6 +33,8 @@ const onToggle = () => {
   visible.value = !visible.value;
   if (visible.value) {
     open();
+  } else {
+    console.log('button close');
   }
 };
 </script>
