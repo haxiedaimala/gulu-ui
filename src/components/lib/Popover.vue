@@ -35,6 +35,8 @@ const onToggle = () => {
     open();
   } else {
     console.log('button close');
+    console.log('移除监听');
+    document.removeEventListener('click', eventHandler);
   }
 };
 </script>
