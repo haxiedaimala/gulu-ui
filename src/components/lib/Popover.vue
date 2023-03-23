@@ -6,25 +6,26 @@ defineProps({
   title: String
 });
 
-const visible = ref(true);
+const visible = ref(false);
+const popover = ref<HTMLDivElement>();
+const trigger = ref<HTMLDivElement>();
+
 const onToggle = () => {
   visible.value = !visible.value;
   if (visible.value) {
-    document.addEventListener('click', function xxx() {
+    document.addEventListener('click', function xxx(e: Event) {
+      if (popover.value?.contains(e.target as HTMLElement)) return;
       setTimeout(() => {
-        console.log(1);
         visible.value = false;
         document.removeEventListener('click', xxx);
       }, 0);
     });
   }
 };
-const popover = ref<HTMLDivElement>();
-const trigger = ref<HTMLDivElement>();
+
 watchPostEffect(() => {
   if (!trigger.value || !popover.value) return;
   const {top, left} = trigger.value!.getBoundingClientRect();
-  console.log(top, left);
   popover.value!.style.left = left + 'px';
   popover.value!.style.top = top + 'px';
 });

@@ -13,13 +13,11 @@ import Button from '../../components/lib/Button.vue';
 </script>
 
 <template>
-  <div style="overflow: hidden;border:1px solid red;">
-    <Popover title="Title"
-             content="this is content,this is content,this is content"
-    >
-      <template #reference>
-        <Button>Hover to activate</Button>
-      </template>
-    </Popover>
-  </div>
+  <Popover title="Title"
+           content="this is content,this is content,this is content"
+  >
+    <template #reference>
+      <Button>Hover to activate</Button>
+    </template>
+  </Popover>
 </template>
