@@ -64,12 +64,30 @@ const onToggle = () => {
     color: inherit;
     border: 1px solid #e4e7ed;
     border-radius: 4px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .12);
-    transform: translate(0, -100%);
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .15));
+    //box-shadow: 0 0 12px rgba(0, 0, 0, .12);
+    transform: translate(0, calc(-100% - 1em));
     word-break: break-all;
     font-size: 14px;
     line-height: 1.4;
     padding: 1em;
+
+    &::after,
+    &::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border: 0.8em solid transparent;
+      border-top-color: #e4e7ed;
+      position: absolute;
+      top: 100%;
+      left: 1em;
+    }
+
+    &::after {
+      border-top-color: #fff;
+      top: calc(100% - 1px);
+    }
 
     .gulu-popover-title {
       font-size: 16px;
