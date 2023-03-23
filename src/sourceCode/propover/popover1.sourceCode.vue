@@ -21,4 +21,31 @@ import Button from '../../components/lib/Button.vue';
       <Button>Hover to activate</Button>
     </template>
   </Popover>
+  <Popover title="Title"
+           :width="200"
+           position="bottom"
+           content="this is content,this is content,this is content"
+  >
+    <template #reference>
+      <Button>Hover to activate</Button>
+    </template>
+  </Popover>
+  <Popover title="Title"
+           :width="200"
+           position="left"
+           content="this is content,this is content,this is content"
+  >
+    <template #reference>
+      <Button>Hover to activate</Button>
+    </template>
+  </Popover>
+  <Popover title="Title"
+           :width="200"
+           position="right"
+           content="this is content,this is content,this is content"
+  >
+    <template #reference>
+      <Button>Hover to activate</Button>
+    </template>
+  </Popover>
 </template>
