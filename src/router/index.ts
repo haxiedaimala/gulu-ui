@@ -9,6 +9,7 @@ import Input from '../views/doc/Input.vue';
 import Layout from '../views/doc/Layout.vue';
 import Container from '../views/doc/Container.vue';
 import Toast from '../views/doc/Toast.vue';
+import Popover from '../views/doc/Popover.vue';
 import Markdown from '../components/Markdown.vue';
 import {h} from 'vue';
 import intro from '../markdown/intro.md';
@@ -63,6 +64,9 @@ export const router = createRouter({
         }, {
           path: 'toast',
           component: Toast
+        }, {
+          path: 'popover',
+          component: Popover
         }]
     }]
 });
