@@ -15,10 +15,9 @@ const onToggle = () => {
   if (visible.value) {
     document.addEventListener('click', function xxx(e: Event) {
       if (popover.value?.contains(e.target as HTMLElement)) return;
-      setTimeout(() => {
-        visible.value = false;
-        document.removeEventListener('click', xxx);
-      }, 0);
+      if (trigger.value?.contains(e.target as HTMLElement)) return;
+      visible.value = false;
+      document.removeEventListener('click', xxx);
     });
   }
 };
@@ -42,7 +41,7 @@ watchPostEffect(() => {
         </template>
       </div>
     </Teleport>
-    <div class="gulu-popover-action" @click.stop="onToggle" ref="trigger">
+    <div class="gulu-popover-action" @click="onToggle" ref="trigger">
       <slot name="reference"/>
     </div>
   </div>

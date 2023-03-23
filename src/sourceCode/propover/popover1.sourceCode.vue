@@ -10,14 +10,20 @@
 <script setup lang="ts">
 import Popover from '../../components/lib/Popover.vue';
 import Button from '../../components/lib/Button.vue';
+
+const yyy = () => {
+  console.log('用户自定义事件');
+};
 </script>
 
 <template>
-  <Popover title="Title"
-           content="this is content,this is content,this is content"
-  >
-    <template #reference>
-      <Button>Hover to activate</Button>
-    </template>
-  </Popover>
+  <div @click="yyy" style="overflow:hidden;border: 1px solid red;">
+    <Popover title="Title"
+             content="this is content,this is content,this is content"
+    >
+      <template #reference>
+        <Button>Hover to activate</Button>
+      </template>
+    </Popover>
+  </div>
 </template>
