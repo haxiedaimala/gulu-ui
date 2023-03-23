@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watchPostEffect} from 'vue';
+import {nextTick, ref} from 'vue';
 
 defineProps({
   content: String,
@@ -9,25 +9,29 @@ defineProps({
 const visible = ref(false);
 const popover = ref<HTMLDivElement>();
 const trigger = ref<HTMLDivElement>();
-
-const onToggle = () => {
-  visible.value = !visible.value;
-  if (visible.value) {
-    document.addEventListener('click', function xxx(e: Event) {
-      if (popover.value?.contains(e.target as HTMLElement)) return;
-      if (trigger.value?.contains(e.target as HTMLElement)) return;
-      visible.value = false;
-      document.removeEventListener('click', xxx);
-    });
-  }
+const eventHandler = (e: Event) => {
+  if (popover.value?.contains(e.target as HTMLElement)) return;
+  if (trigger.value?.contains(e.target as HTMLElement)) return;
+  visible.value = false;
+  document.removeEventListener('click', eventHandler);
 };
-
-watchPostEffect(() => {
-  if (!trigger.value || !popover.value) return;
+const positionContent = () => {
   const {top, left} = trigger.value!.getBoundingClientRect();
   popover.value!.style.left = left + 'px';
   popover.value!.style.top = top + 'px';
-});
+};
+const open = () => {
+  nextTick(() => {
+    positionContent();
+    document.addEventListener('click', eventHandler);
+  });
+};
+const onToggle = () => {
+  visible.value = !visible.value;
+  if (visible.value) {
+    open();
+  }
+};
 </script>
 
 <template>
