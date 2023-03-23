@@ -9,6 +9,15 @@ defineProps({
 const visible = ref(false);
 const onToggle = () => {
   visible.value = !visible.value;
+  if (visible.value) {
+    document.addEventListener('click', function xxx() {
+      setTimeout(() => {
+        console.log(1);
+        visible.value = false;
+        document.removeEventListener('click', xxx);
+      },0);
+    });
+  }
 };
 </script>
 
@@ -21,7 +30,7 @@ const onToggle = () => {
         <slot/>
       </template>
     </div>
-    <div class="gulu-popover-action" @click="onToggle">
+    <div class="gulu-popover-action" @click.stop="onToggle">
       <slot name="reference"/>
     </div>
   </div>
