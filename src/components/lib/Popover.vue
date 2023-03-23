@@ -9,13 +9,10 @@ defineProps({
 const visible = ref(false);
 const popover = ref<HTMLDivElement>();
 const trigger = ref<HTMLDivElement>();
-const eventHandler = (e: Event) => {
+const onClickDocument = (e: Event) => {
   if (popover.value?.contains(e.target as HTMLElement)) return;
   if (trigger.value?.contains(e.target as HTMLElement)) return;
-  console.log('document close');
-  visible.value = false;
-  console.log('移除监听');
-  document.removeEventListener('click', eventHandler);
+  close();
 };
 const positionContent = () => {
   const {top, left} = trigger.value!.getBoundingClientRect();
@@ -23,21 +20,18 @@ const positionContent = () => {
   popover.value!.style.top = top + 'px';
 };
 const open = () => {
+  visible.value = true;
   nextTick(() => {
     positionContent();
-    console.log('增加监听');
-    document.addEventListener('click', eventHandler);
+    document.addEventListener('click', onClickDocument);
   });
 };
+const close = () => {
+  visible.value = false;
+  document.removeEventListener('click', onClickDocument);
+};
 const onToggle = () => {
-  visible.value = !visible.value;
-  if (visible.value) {
-    open();
-  } else {
-    console.log('button close');
-    console.log('移除监听');
-    document.removeEventListener('click', eventHandler);
-  }
+  visible.value ? close() : open();
 };
 </script>
 
