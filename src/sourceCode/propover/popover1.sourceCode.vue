@@ -14,6 +14,7 @@ import Button from '../../components/lib/Button.vue';
 
 <template>
   <Popover title="Title"
+           :width="200"
            content="this is content,this is content,this is content"
   >
     <template #reference>

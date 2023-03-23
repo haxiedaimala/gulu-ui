@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import {nextTick, ref} from 'vue';
 
-defineProps({
+const props = defineProps({
   content: String,
-  title: String
+  title: String,
+  width: Number,
 });
 
 const visible = ref(false);
@@ -18,6 +19,8 @@ const positionContent = () => {
   const {top, left} = trigger.value!.getBoundingClientRect();
   popover.value!.style.left = left + window.scrollX + 'px';
   popover.value!.style.top = top + window.scrollY + 'px';
+  if (!props.width) return;
+  popover.value!.style.width = props.width + 'px';
 };
 const open = () => {
   visible.value = true;
