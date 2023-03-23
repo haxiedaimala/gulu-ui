@@ -16,8 +16,8 @@ const onClickDocument = (e: Event) => {
 };
 const positionContent = () => {
   const {top, left} = trigger.value!.getBoundingClientRect();
-  popover.value!.style.left = left + 'px';
-  popover.value!.style.top = top + 'px';
+  popover.value!.style.left = left + window.scrollX + 'px';
+  popover.value!.style.top = top + window.scrollY + 'px';
 };
 const open = () => {
   visible.value = true;
