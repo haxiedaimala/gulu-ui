@@ -1,8 +1,8 @@
 <sourceCode>
-多种展示位置
+常规用法
 <detail>
-  <code>position</code> 属性被用来决定 <code>popover</code> 的触发位置，
-  触发位置有： <code>top</code>（默认位置）、<code>bottom</code>、<code>left</code>、<code>right</code>
+  <code>trigger</code> 属性被用来决定 <code>popover</code> 的触发方式，
+  支持的触发方式： <code>hover</code>、<code>click</code>、<code>focus</code>
 </detail>
 </sourceCode>
 
@@ -13,34 +13,27 @@ import Button from '../../components/lib/Button.vue';
 
 <template>
   <Popover title="Title"
+           trigger="hover"
            content="this is content,this is content,this is content"
   >
     <template #reference>
-      <Button>Top popover</Button>
+      <Button>Hover to activate</Button>
     </template>
   </Popover>
   <Popover title="Title"
-           position="bottom"
+           trigger="click"
            content="this is content,this is content,this is content"
   >
     <template #reference>
-      <Button>Bottom popover</Button>
+      <Button>Click to activate</Button>
     </template>
   </Popover>
   <Popover title="Title"
-           position="left"
+           trigger="focus"
            content="this is content,this is content,this is content"
   >
     <template #reference>
-      <Button>Left popover</Button>
-    </template>
-  </Popover>
-  <Popover title="Title"
-           position="right"
-           content="this is content,this is content,this is content"
-  >
-    <template #reference>
-      <Button>Right popover</Button>
+      <Button>Focus to activate</Button>
     </template>
   </Popover>
 </template>
