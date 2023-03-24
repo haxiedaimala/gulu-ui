@@ -35,10 +35,11 @@ import Button from '../../components/lib/Button.vue';
   <Popover title="Title"
            :width="200"
            position="left"
+           trigger="focus"
            content="this is content,this is content,this is content"
   >
     <template #reference>
-      <Button>Hover to activate</Button>
+      <Button>Focus to activate</Button>
     </template>
   </Popover>
   <Popover title="Title"

@@ -13,7 +13,7 @@ const props = defineProps({
   trigger: {
     type: String,
     default: 'hover',
-    validator: (value: string) => ['hover', 'click'].indexOf(value) >= 0
+    validator: (value: string) => ['hover', 'click', 'focus'].indexOf(value) >= 0
   }
 });
 
@@ -79,16 +79,20 @@ onMounted(() => {
   } else if (props.trigger === 'hover') {
     triggerItem.value?.addEventListener('mouseenter', open);
     triggerItem.value?.addEventListener('mouseleave', close);
-    popover.value?.addEventListener('mouseenter', open);
-    popover.value?.addEventListener('mouseleave', close);
+  } else if (props.trigger === 'focus') {
+    triggerItem.value?.addEventListener('focus', open, true);
+    triggerItem.value?.addEventListener('blur', close, true);
   }
 });
 onUnmounted(() => {
   if (props.trigger === 'click') {
     triggerItem.value?.removeEventListener('click', onToggle);
-  } else {
+  } else if (props.trigger === 'hover') {
     triggerItem.value?.removeEventListener('mouseenter', open);
     triggerItem.value?.removeEventListener('mouseleave', close);
+  } else if (props.trigger === 'focus') {
+    triggerItem.value?.removeEventListener('focus', open, true);
+    triggerItem.value?.removeEventListener('blur', close, true);
   }
 });
 </script>
