@@ -15,6 +15,7 @@ import Button from '../../components/lib/Button.vue';
 <template>
   <Popover title="Title"
            :width="200"
+           trigger="hover"
            content="this is content,this is content,this is content"
   >
     <template #reference>
@@ -24,10 +25,11 @@ import Button from '../../components/lib/Button.vue';
   <Popover title="Title"
            :width="200"
            position="bottom"
+           trigger="click"
            content="this is content,this is content,this is content"
   >
     <template #reference>
-      <Button>Hover to activate</Button>
+      <Button>Click to activate</Button>
     </template>
   </Popover>
   <Popover title="Title"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, nextTick, ref} from 'vue';
+import {computed, nextTick, onMounted, onUnmounted, ref} from 'vue';
 
 const props = defineProps({
   content: String,
@@ -9,19 +9,24 @@ const props = defineProps({
     type: String,
     default: 'top',
     validator: (value: string) => ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
+  },
+  trigger: {
+    type: String,
+    default: 'hover',
+    validator: (value: string) => ['hover', 'click'].indexOf(value) >= 0
   }
 });
 
 const visible = ref(false);
 const popover = ref<HTMLDivElement>();
-const trigger = ref<HTMLDivElement>();
+const triggerItem = ref<HTMLDivElement>();
 const onClickDocument = (e: Event) => {
   if (popover.value?.contains(e.target as HTMLElement)) return;
-  if (trigger.value?.contains(e.target as HTMLElement)) return;
+  if (triggerItem.value?.contains(e.target as HTMLElement)) return;
   close();
 };
 const positionContent = () => {
-  const {top, left, width, height} = trigger.value!.getBoundingClientRect();
+  const {top, left, width, height} = triggerItem.value!.getBoundingClientRect();
   const {height: height2} = popover.value!.getBoundingClientRect();
   const xxx = {
     top: {
@@ -51,11 +56,13 @@ const open = () => {
   visible.value = true;
   nextTick(() => {
     positionContent();
+    if (props.trigger !== 'click') return;
     document.addEventListener('click', onClickDocument);
   });
 };
 const close = () => {
   visible.value = false;
+  if (props.trigger !== 'click') return;
   document.removeEventListener('click', onClickDocument);
 };
 const onToggle = () => {
@@ -65,6 +72,24 @@ const classStyle = computed(() => {
   return {
     [`gulu-popover-${props.position}`]: props.position
   };
+});
+onMounted(() => {
+  if (props.trigger === 'click') {
+    triggerItem.value?.addEventListener('click', onToggle);
+  } else if (props.trigger === 'hover') {
+    triggerItem.value?.addEventListener('mouseenter', open);
+    triggerItem.value?.addEventListener('mouseleave', close);
+    popover.value?.addEventListener('mouseenter', open);
+    popover.value?.addEventListener('mouseleave', close);
+  }
+});
+onUnmounted(() => {
+  if (props.trigger === 'click') {
+    triggerItem.value?.removeEventListener('click', onToggle);
+  } else {
+    triggerItem.value?.removeEventListener('mouseenter', open);
+    triggerItem.value?.removeEventListener('mouseleave', close);
+  }
 });
 </script>
 
@@ -79,7 +104,7 @@ const classStyle = computed(() => {
         </template>
       </div>
     </Teleport>
-    <div class="gulu-popover-action" @click="onToggle" ref="trigger">
+    <div class="gulu-popover-action" ref="triggerItem">
       <slot name="reference"/>
     </div>
   </div>
