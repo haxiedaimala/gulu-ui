@@ -2,9 +2,14 @@
 import CollapseItem from './CollapseItem.vue';
 import {useSlots} from 'vue';
 
-const props = defineProps<{
-  modelValue: string[]
-}>();
+interface Props {
+  modelValue: string[],
+  accordion?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  accordion: false
+});
 const emits = defineEmits<{
   (e: 'update:modelValue', value: string[]): void
 }>();
@@ -17,9 +22,15 @@ slots.forEach(node => {
 
 const toggleCollapse = (value: string) => {
   let arr: string[] = [...props.modelValue];
-  arr.indexOf(value) >= 0 ?
-      (arr = arr.filter(item => item !== value))
-      : arr.push(value);
+  if (props.accordion) {
+    arr = arr.indexOf(value) >= 0
+        ? []
+        : [value];
+  } else {
+    arr.indexOf(value) >= 0
+        ? (arr = arr.filter(item => item !== value))
+        : arr.push(value);
+  }
   emits('update:modelValue', arr);
 };
 </script>
