@@ -1,12 +1,16 @@
 <script setup lang="ts">
 defineProps({
   title: {
-    type: String,
+    type: String || Array,
     required: true
   },
   name: {
-    type: String,
+    type: String || Number,
     required: true
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 });
 </script>

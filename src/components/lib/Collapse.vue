@@ -20,7 +20,8 @@ slots.forEach(node => {
   if (node.type !== CollapseItem) throw new Error('Collapse 组件的子组件名必须是 CollapseItem');
 });
 
-const toggleCollapse = (value: string) => {
+const toggleCollapse = (obj: { name: string, title: string, disabled: boolean }) => {
+  const value = obj.name;
   let arr: string[] = [...props.modelValue];
   if (props.accordion) {
     arr = arr.indexOf(value) >= 0
@@ -31,6 +32,7 @@ const toggleCollapse = (value: string) => {
         ? (arr = arr.filter(item => item !== value))
         : arr.push(value);
   }
+  if (obj.disabled) return;
   emits('update:modelValue', arr);
 };
 </script>
@@ -40,9 +42,9 @@ const toggleCollapse = (value: string) => {
     <div class="gulu-collapse-item"
          v-for="(component,index) in slots"
          :key="index"
-         :class="{['gulu-collapse-visible']: props.modelValue.indexOf(component.props.name) >= 0}"
+         :class="{['gulu-collapse-visible']: props.modelValue.indexOf(component.props.name) >= 0,'disabled':component.props.disabled===true}"
     >
-      <div class="gulu-collapse-title" @click="toggleCollapse(component.props.name)">
+      <div class="gulu-collapse-title" @click="toggleCollapse(component.props)">
         {{ component.props.title }}
       </div>
       <div class="gulu-collapse-content">
@@ -107,6 +109,17 @@ const toggleCollapse = (value: string) => {
       .gulu-collapse-content {
         padding: 1em 0;
         height: auto;
+      }
+    }
+
+    &.disabled {
+      .gulu-collapse-title {
+        color: darken($color-border, 20%);
+        cursor: not-allowed;
+      }
+
+      .gulu-collapse-content {
+        color: darken($color-border, 20%);
       }
     }
   }
