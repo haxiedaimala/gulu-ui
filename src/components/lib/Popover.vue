@@ -65,6 +65,15 @@ const close = () => {
   if (props.trigger !== 'click') return;
   document.removeEventListener('click', onClickDocument);
 };
+const xxx = (e: Event) => {
+  if (!triggerItem.value?.contains(e.target as HTMLElement) && !popover.value?.contains(e.target as HTMLElement)) {
+    close();
+    return;
+  }
+  if (triggerItem.value?.contains(e.target as HTMLElement) || popover.value?.contains(e.target as HTMLElement)) {
+    open();
+  }
+};
 const onToggle = () => {
   visible.value ? close() : open();
 };
@@ -77,8 +86,7 @@ onMounted(() => {
   if (props.trigger === 'click') {
     triggerItem.value?.addEventListener('click', onToggle);
   } else if (props.trigger === 'hover') {
-    triggerItem.value?.addEventListener('mouseenter', open);
-    triggerItem.value?.addEventListener('mouseleave', close);
+    document.addEventListener('mousemove', xxx);
   } else if (props.trigger === 'focus') {
     triggerItem.value?.addEventListener('focus', open, true);
     triggerItem.value?.addEventListener('blur', close, true);
@@ -88,8 +96,7 @@ onUnmounted(() => {
   if (props.trigger === 'click') {
     triggerItem.value?.removeEventListener('click', onToggle);
   } else if (props.trigger === 'hover') {
-    triggerItem.value?.removeEventListener('mouseenter', open);
-    triggerItem.value?.removeEventListener('mouseleave', close);
+    document.removeEventListener('mousemove', xxx);
   } else if (props.trigger === 'focus') {
     triggerItem.value?.removeEventListener('focus', open, true);
     triggerItem.value?.removeEventListener('blur', close, true);
