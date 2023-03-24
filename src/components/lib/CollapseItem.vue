@@ -1,11 +1,16 @@
 <script setup lang="ts">
+defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  }
+});
 </script>
 
 <template>
-  <div>
-    <slot/>
-  </div>
+  <slot/>
 </template>
-
-<style lang="scss">
-</style>
