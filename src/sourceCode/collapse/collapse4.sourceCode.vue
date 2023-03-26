@@ -1,7 +1,7 @@
 <sourceCode>
-禁止面板
+自定义面板标题
 <detail>
-  通过 <code>disabled</code> 属性来设置面板是否接受折叠展示。
+  除了可以通过 <code>title</code> 属性以外，还可以通过具名 <code>slot</code> 来实现自定义面板的标题内容，以实现增加图标等效果。
 </detail>
 </sourceCode>
 
@@ -15,7 +15,10 @@ const activeNames = ref(['1']);
 
 <template>
   <Collapse v-model="activeNames" accordion>
-    <CollapseItem title="Consistency" name="1">
+    <CollapseItem name="1">
+      <template #title>
+        <strong><i>自定义标题内容及格式</i></strong>
+      </template>
       <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and
         habits that the users are used to;
       </div>
@@ -23,7 +26,7 @@ const activeNames = ref(['1']);
         position of elements, etc.
       </div>
     </CollapseItem>
-    <CollapseItem title="Feedback" name="2" disabled>
+    <CollapseItem title="Feedback" name="2">
       <div>Operation feedback: enable the users to clearly perceive their operations by style updates and interactive
         effects;
       </div>

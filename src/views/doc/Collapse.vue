@@ -3,6 +3,7 @@ import Demo from '../../components/Demo.vue';
 import CollapseSourceCode1 from '../../sourceCode/collapse/collapse1.sourceCode.vue';
 import CollapseSourceCode2 from '../../sourceCode/collapse/collapse2.sourceCode.vue';
 import CollapseSourceCode3 from '../../sourceCode/collapse/collapse3.sourceCode.vue';
+import CollapseSourceCode4 from '../../sourceCode/collapse/collapse4.sourceCode.vue';
 </script>
 
 <template>
@@ -11,4 +12,5 @@ import CollapseSourceCode3 from '../../sourceCode/collapse/collapse3.sourceCode.
   <Demo :component="CollapseSourceCode1"/>
   <Demo :component="CollapseSourceCode2"/>
   <Demo :component="CollapseSourceCode3"/>
+  <Demo :component="CollapseSourceCode4"/>
 </template>
