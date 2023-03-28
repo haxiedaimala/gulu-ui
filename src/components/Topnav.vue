@@ -21,7 +21,10 @@ const toggleAside = () => {
       </svg>
     </router-link>
     <ul class="menu">
-      <router-link to="/doc">文档</router-link>
+      <li>
+        <router-link to="/doc">文档</router-link>
+      </li>
+      <li><a href="https://www.npmjs.com/package/gulu-ui-myself">npm</a></li>
     </ul>
     <svg v-if="toggleAsideVisible" class="icon toggleAside" @click="toggleAside">
       <use xlink:href="#icon-menu"></use>

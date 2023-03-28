@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     outDir: 'dist/lib',
     lib: {
-      entry: resolve(__dirname, 'src/components/index.ts'),
+      entry: resolve(__dirname, 'src/components/lib/index.ts'),
       name: 'Gulu',
       fileName: format => `gulu.${format}.js`,
     },
