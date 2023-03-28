@@ -15,6 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.g-un-show-pwd:before {
+  content: "\e661";
+}
+
+.g-show-pwd:before {
+  content: "\e901";
+}
+
 .g-info:before {
   content: "\e67d";
 }
@@ -46,3 +54,7 @@
 .g-warning {
   color: $color-button-warning;
 }
+
+
+
+

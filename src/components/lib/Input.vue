@@ -87,14 +87,10 @@ const messageTips = computed(() => {
     <span v-if="type==='password'&&showPassword && showPwd && modelValue.length>0"
           @click="toggelType"
           class="gulu-input-show-pwd">
-      <svg aria-hidden="true">
-        <use :xlink:href="`#icon${name}show-pwd`"></use>
-      </svg>
+      <i class="gulu-iconfont" :class="`g${name}show-pwd`"/>
     </span>
     <template v-if="messageTips && messageTips.type">
-      <svg class="gulu-input-icon" aria-hidden="true">
-        <use :xlink:href="`#icon-${messageTips.type}`"></use>
-      </svg>
+      <i class="gulu-iconfont gulu-input-icon" :class="`g-${messageTips.type}`"/>
       <span :class="`gulu-input-${messageTips.type}-message`">{{ messageTips.value }}</span>
     </template>
   </div>
@@ -102,6 +98,7 @@ const messageTips = computed(() => {
 
 <style lang="scss">
 @import "../../assets/helper";
+@import "iconfont";
 
 .gulu-input-wrapper {
   position: relative;
@@ -179,6 +176,9 @@ const messageTips = computed(() => {
   }
 
   .gulu-input-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     width: 1.5em;
     height: 1em;
     margin: 0 0.3em 0 0.5em;
