@@ -68,6 +68,9 @@ const messageTips = computed(() => {
   if (props.success) return {type: 'success', value: props.success};
   return false;
 });
+const onInput = (e: Event) => {
+  emits('update:modelValue', (e.target! as HTMLInputElement).value);
+};
 </script>
 
 <template>
@@ -77,7 +80,7 @@ const messageTips = computed(() => {
            :class="{['gulu-input-error']:error}"
            :value="modelValue"
            :disabled="disabled"
-           @input="$emit('update:modelValue',$event.target.value)"
+           @input="onInput"
            :placeholder="placeholder"
     />
     <span class="gulu-input-clear"

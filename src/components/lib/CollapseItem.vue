@@ -1,24 +1,27 @@
 <script setup lang="ts">
-import {computed} from 'vue';
+import {computed,useAttrs} from 'vue';
 
-interface Props {
-  title: string,
-  name: string,
-  disabled: boolean,
-  modelValue: string | string[],
-  accordion?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  accordion: false
+const props = defineProps({
+  title: String,
+  name: {
+    type: String,
+    required: true
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
 });
+const modelValue = computed(() => {
+  return useAttrs().modelValue as string[];
+});
+const accordion = useAttrs().accordion as boolean;
 const emits = defineEmits<{
   (e: 'update:modelValue', value: string[]): void
 }>();
 const toggleCollapse = () => {
-  let arr: string[] = [...(props.modelValue as string[])];
-  if (props.accordion) {
+  let arr: string[] = [...modelValue.value];
+  if (accordion) {
     arr = arr.indexOf(props.name) >= 0
         ? []
         : [props.name];
@@ -33,7 +36,7 @@ const toggleCollapse = () => {
 
 const classStyle = computed(() => {
   return {
-    ['gulu-collapse-visible']: props.modelValue.indexOf(props.name) >= 0,
+    ['gulu-collapse-visible']: modelValue.value.indexOf(props.name) >= 0,
     'disabled': props.disabled
   };
 });

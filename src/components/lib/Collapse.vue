@@ -3,7 +3,7 @@ import CollapseItem from './CollapseItem.vue';
 import {ref, useSlots, watch} from 'vue';
 
 interface Props {
-  modelValue: string | string[],
+  modelValue: string[],
   accordion?: boolean
 }
 
@@ -20,7 +20,7 @@ slots.forEach(node => {
   if (node.type !== CollapseItem) throw new Error('Collapse 组件的子组件名必须是 CollapseItem');
 });
 
-const activesName = ref(['1']);
+const activesName = ref(props.modelValue);
 watch(activesName, () => {
   emits('update:modelValue', activesName.value);
 });
