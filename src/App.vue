@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import {provide, ref} from 'vue';
+import {onMounted, provide, ref} from 'vue';
 import {router} from './router';
 
-const width = document.documentElement.clientWidth;
-const asideVisible = ref(width > 960);
+const width = ref(document.documentElement.clientWidth);
+const number = 960;
+onMounted(() => {
+  window.onresize = () => {
+    width.value = document.documentElement.clientWidth;
+  };
+});
+const asideVisible = ref(width.value <= number);
 provide('asideVisible', asideVisible);
 router.afterEach(() => {
-  if (width <= 960) {
+  if (width.value <= number) {
     asideVisible.value = false;
   }
 });
@@ -15,6 +21,3 @@ router.afterEach(() => {
 <template>
   <router-view/>
 </template>
-
-<style scoped>
-</style>

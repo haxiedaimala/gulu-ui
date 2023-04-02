@@ -9,7 +9,7 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
   <div class="layout">
     <Topnav toggleAsideVisible class="nav"/>
     <div class="content">
-      <aside v-if="asideVisible">
+      <aside :class="{open:asideVisible}">
         <h2>文档</h2>
         <ol>
           <li>
@@ -97,6 +97,9 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
       box-shadow: $box-shadow-aside;
       background: #fff;
       overflow: auto;
+      transform: translate(-100%, 0);
+      opacity: 0;
+      transition: all 250ms;
 
       &::-webkit-scrollbar {
         display: none
@@ -139,6 +142,16 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
         }
       }
 
+      &.open {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+
+      @media (min-width: $width) {
+        opacity: 1;
+        transform: translate(0);
+      }
     }
 
     > main {
