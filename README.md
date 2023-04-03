@@ -14,11 +14,11 @@ npm intsall gulu-ui-myself
 
 ## 版本说明
 
-### 版本 0.0.1
+### 版本 0.0.0
 
 添加了`Switch` `Button` `Tabs` `Dialog`组件功能
 
-### 版本 0.0.2
+### 版本 0.1.0
 
 对已有的功能进行优化，及添加并完善功能。具体如下：
 
@@ -41,7 +41,7 @@ npm intsall gulu-ui-myself
 
 - 使用 `v-model`实现双向绑定
 
-## 版本 0.0.3
+### 版本 1.1.0
 
 新增以下组件：
 
