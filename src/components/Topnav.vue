@@ -17,7 +17,7 @@ const toggleAside = () => {
   <div class="top-nav">
     <router-link to="/" class="logo">
       <svg class="icon">
-        <use xlink:href="#icon-logo"></use>
+        <use xlink:href="#icon-logo"/>
       </svg>
     </router-link>
     <ul class="menu">
@@ -26,9 +26,16 @@ const toggleAside = () => {
       </li>
       <li><a href="https://www.npmjs.com/package/gulu-ui-myself">npm</a></li>
     </ul>
-    <svg v-if="toggleAsideVisible" class="icon toggleAside" @click="toggleAside">
-      <use xlink:href="#icon-menu"></use>
-    </svg>
+    <div v-if="toggleAsideVisible" class="toggleAside">
+      <transition name="fade" mode="out-in" @click="toggleAside" class="icon">
+        <svg v-if="asideVisible">
+          <use xlink:href="#icon-close"/>
+        </svg>
+        <svg v-else>
+          <use xlink:href="#icon-menu"/>
+        </svg>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -77,6 +84,11 @@ const toggleAside = () => {
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
+
+    > svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   @media(max-width: $width) {
@@ -90,5 +102,15 @@ const toggleAside = () => {
       display: inline-block;
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 250ms linear;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: rotateX(-90deg);
 }
 </style>
