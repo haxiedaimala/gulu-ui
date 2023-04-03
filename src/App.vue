@@ -12,6 +12,7 @@ onMounted(() => {
 const asideVisible = ref(width.value <= number);
 provide('asideVisible', asideVisible);
 router.afterEach(() => {
+  document.documentElement.scrollTop = document.body.scrollTop = 0;
   if (width.value <= number) {
     asideVisible.value = false;
   }

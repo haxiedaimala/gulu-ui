@@ -1,8 +1,24 @@
 <script setup lang="ts">
 import Topnav from '../components/Topnav.vue';
-import {inject, Ref} from 'vue';
+import {inject, onMounted, ref, Ref} from 'vue';
 
 const asideVisible = inject<Ref<boolean>>('asideVisible')!;
+const showTopBtn = ref(false);
+const toggleTopBtn = () => {
+  const dis = document.documentElement.scrollTop || document.body.scrollTop;
+  showTopBtn.value = dis >= 350;
+};
+const backTop = () => {
+  let timer = setInterval(() => {
+    let top = document.documentElement.scrollTop || document.body.scrollTop;
+    let speed = Math.floor(-top / 5);
+    document.documentElement.scrollTop = document.body.scrollTop = top + speed;
+    if (top === 0) clearInterval(timer);
+  }, 20);
+};
+onMounted(() => {
+  window.addEventListener('scroll', toggleTopBtn, true);
+});
 </script>
 
 <template>
@@ -58,6 +74,11 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
       </aside>
       <main>
         <router-view/>
+        <div v-show="showTopBtn" @click="backTop" class="back-top">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-back-top"></use>
+          </svg>
+        </div>
       </main>
     </div>
   </div>
@@ -159,6 +180,32 @@ const asideVisible = inject<Ref<boolean>>('asideVisible')!;
       padding: 56px;
       background: #fff;
       overflow: auto;
+
+      .back-top {
+        position: fixed;
+        right: 6%;
+        bottom: 11%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2.5em;
+        height: 2.5em;
+        color: $color-theme;
+        background-color: #fff;
+        box-shadow: $box-shadow-back-top;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 5;
+
+        svg {
+          width: 2em;
+          height: 2em;
+        }
+
+        &:hover {
+          background-color: $color-hover-back-top;
+        }
+      }
     }
   }
 }
